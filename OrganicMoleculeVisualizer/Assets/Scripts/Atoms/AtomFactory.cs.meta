@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cddd4f6b3ddd14365b90f8281dc6a7a5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - carbonMaterial: {fileID: 2100000, guid: 7547d8dfc00f747c5b43739733fa8c21, type: 2}
+  - hydrogenMaterial: {fileID: 2100000, guid: 1c5f1e5f8192341c092976400a7bdabf, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

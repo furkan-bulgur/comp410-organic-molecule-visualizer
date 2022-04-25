@@ -10,10 +10,12 @@ public class NameParser
     private const string HydrogenAtom = "hydrogen";
 
     private AtomFactory atomFactory;
+    private BondFactory bondFactory;
     // Start is called before the first frame update
     public NameParser(AtomFactory atomFactory)
     {
         this.atomFactory = atomFactory;
+        this.bondFactory = new BondFactory();
     }
 
     public string parseAndCreate(string name)
@@ -21,14 +23,21 @@ public class NameParser
         name = name.Trim().ToLower();
         if (name.Equals(CarbonAtom))
         {
-            atomFactory.createCarbonAtom();
+            atomFactory.CreateCarbonAtom();
             return "Carbon";
 
         }
         else if (name.Equals(HydrogenAtom))
         {
-            atomFactory.createHydrogenAtom(new Vector3(1, 1, 0));
+            atomFactory.CreateHydrogenAtom();
             return "Hydrogen";
+        }
+        else if (name.Equals("test"))
+        {
+            Atom carbon = atomFactory.CreateCarbonAtom();
+            Bond bond = bondFactory.CreateSingleBond();
+            SingleBondStructure structure = new SingleBondStructure(carbon);//, Quaternion.Euler(new Vector3(0,0,-90)));
+            structure.BindBond(bond);
         }
         return "Invalid Name";
     }
