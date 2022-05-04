@@ -12,12 +12,11 @@ public class NameParser
     private const string HydrogenMolecule = "hydrogenmolecule";
 
     private AtomFactory atomFactory;
-    private BondFactory bondFactory;
+    private BondFactory bondFactory = new BondFactory();
     // Start is called before the first frame update
     public NameParser(AtomFactory atomFactory)
     {
         this.atomFactory = atomFactory;
-        this.bondFactory = new BondFactory();
     }
 
     public string parseAndCreate(string name)
@@ -42,8 +41,8 @@ public class NameParser
         }
         else if (name.Equals("test"))
         {
-            new CHMol();
-            return "CH";
+            new Alkane(1);
+            return "Methane";
         }
         return "Invalid Name";
     }

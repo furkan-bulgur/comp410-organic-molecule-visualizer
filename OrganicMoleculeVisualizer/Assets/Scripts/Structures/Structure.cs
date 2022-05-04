@@ -52,8 +52,12 @@ public abstract class Structure
         Position = position;
     }
 
-    public abstract void BindStructure(Structure structure, int bondNum);
+    
     public abstract void BindBond(int bondNum);
+    public void BindStructure(Structure structure, int bondNum = AppConstants.SingleBondNum)
+    {
+        bindings[bonds[bondNum]] = structure;
+    }
     public bool IsBondBinded(int bondNum)
     {
         return bonds.ContainsKey(bondNum);

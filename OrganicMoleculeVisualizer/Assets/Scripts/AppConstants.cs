@@ -22,9 +22,16 @@ public static class AppConstants
     public static Vector3 SingleBondScale = new Vector3(BondRadius*2, BondLength/2, BondRadius*2) * AppScale;
 
     public const int SingleBondNum = 1;
-    public static Dictionary<int, Vector3> SingleBondDefaultDirection = new Dictionary<int, Vector3>()
+    public static Dictionary<int, Vector3> SingleBondDefaultDirections = new Dictionary<int, Vector3>()
     {
         {1, new Vector3(1,0,0) },
+    };
+    public static Dictionary<int, Vector3> TetrahedralBondDefaultDirections = new Dictionary<int, Vector3>()
+    {
+        {1, new Vector3(1,-1,1) },
+        {2, new Vector3(1,1,-1) },
+        {3, new Vector3(-1,1,1) },
+        {4, new Vector3(-1,-1,-1) },
     };
 
 }

@@ -333,3 +333,4 @@
 "Assets/Scripts/Structures/SingleBondStructure.cs"
 "Assets/Scripts/Structures/Structure.cs"
 "Assets/Scripts/Structures/StructureFactory.cs"
+"Assets/Scripts/Structures/TetrahedralStructure.cs"

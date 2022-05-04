@@ -72,9 +72,9 @@ public abstract class Bond
 
     public void SetBondAccordingToAtom(Atom atom, Vector3 direction)
     {
-
-        Position = atom.Position + direction * (AppConstants.BondLength / 2 + atom.Radius - AppConstants.BondLengthInsideAtom);
-        Direction = direction;
+        Direction = direction; //Before because it needs to be normalized
+        Position = atom.Position + Direction * (AppConstants.BondLength / 2 + atom.Radius - AppConstants.BondLengthInsideAtom);
+        
         
     }
 

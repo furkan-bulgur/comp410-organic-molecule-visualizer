@@ -8,4 +8,9 @@ public class StructureFactory
     {
         return new SingleBondStructure(atom);
     }
+
+    public Structure CreateTetrahedralStructure(Atom atom)
+    {
+        return new TetrahedralStructure(atom);
+    }
 }
