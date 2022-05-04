@@ -31,7 +31,7 @@ public abstract class Atom
     {
         // Multiplying with scale to get actual radius because scale is uniform
         // taking one of its values is enough
-        get { return _sphere.GetComponent<SphereCollider>().radius * Scale.x; }
+        get { return Scale.x/2; }
     }
 
     public Atom()

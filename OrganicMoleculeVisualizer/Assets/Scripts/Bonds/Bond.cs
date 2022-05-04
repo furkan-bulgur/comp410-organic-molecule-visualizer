@@ -72,11 +72,10 @@ public abstract class Bond
 
     public void SetBondAccordingToAtom(Atom atom, Vector3 direction)
     {
-        //Debug.Log(direction);
-        //Debug.Log(Quaternion.LookRotation(direction, AppConstants.DefaultUpVector));
-        Position = atom.Position + direction * (atom.Radius - AppConstants.BondLengthInsideAtom);
+
+        Position = atom.Position + direction * (AppConstants.BondLength / 2 + atom.Radius - AppConstants.BondLengthInsideAtom);
         Direction = direction;
-        Material = atom.Material;
+        
     }
 
 

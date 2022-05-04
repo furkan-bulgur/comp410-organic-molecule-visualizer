@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 
@@ -8,6 +9,7 @@ public class NameParser
 {
     private const string CarbonAtom = "carbon";
     private const string HydrogenAtom = "hydrogen";
+    private const string HydrogenMolecule = "hydrogenmolecule";
 
     private AtomFactory atomFactory;
     private BondFactory bondFactory;
@@ -20,7 +22,8 @@ public class NameParser
 
     public string parseAndCreate(string name)
     {
-        name = name.Trim().ToLower();
+        name = Regex.Replace(name.ToLower(), @"\s", "");
+        Debug.Log(name);
         if (name.Equals(CarbonAtom))
         {
             atomFactory.CreateCarbonAtom();
@@ -32,12 +35,15 @@ public class NameParser
             atomFactory.CreateHydrogenAtom();
             return "Hydrogen";
         }
+        else if (name.Equals(HydrogenMolecule))
+        {
+            new HydrogenMolecule();
+            return "Hydrogen Molecule";
+        }
         else if (name.Equals("test"))
         {
-            Atom carbon = atomFactory.CreateCarbonAtom();
-            Bond bond = bondFactory.CreateSingleBond();
-            SingleBondStructure structure = new SingleBondStructure(carbon);//, Quaternion.Euler(new Vector3(0,0,-90)));
-            structure.BindBond(bond);
+            new CHMol();
+            return "CH";
         }
         return "Invalid Name";
     }

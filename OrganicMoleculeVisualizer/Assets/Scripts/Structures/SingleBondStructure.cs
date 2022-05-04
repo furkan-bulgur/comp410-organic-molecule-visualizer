@@ -18,19 +18,17 @@ public class SingleBondStructure : Structure
     {
 
     }
-    public override void BindBond(Bond bond)
+    public override void BindBond(int bondNum)
     {
-        if(bond is SingleBond)
-        {
-            _singleBond = (SingleBond)bond;
-        }
-        else
-        {
-            Debug.LogError("Bond is not a Single Bond");
-            return;
-        }
-        _singleBond.SetBondAccordingToAtom(this.Atom, AppConstants.DefaultBondDirection);
-        _singleBond.ParentStructureTransform = _structure.transform;
+        BondFactory bondFactory = new BondFactory();
+        Bond bond = bondFactory.CreateSingleBond(this.Atom, AppConstants.SingleBondDefaultDirection[bondNum]);
+        bond.ParentStructureTransform = _structure.transform;
+        bonds[bondNum] = bond;
     }
+    public override void BindStructure(Structure structure, int bondNum=AppConstants.SingleBondNum)
+    { 
+        bindings[bonds[bondNum]] = structure;
+    }
+    
 
 }
