@@ -4,6 +4,28 @@ using UnityEngine;
 
 public abstract class Atom 
 {
+    /*
+     * Atom
+     * 
+     * This is an object representing atoms and their sphere objects.
+     * 
+     * Position: 
+     * Its position is relative to its parent which is a Structure and it is mostly 
+     * untouched and 0,0,0
+     * 
+     * Scale:
+     * Scale changes from atom to atom. The default scales for different type of atoms
+     * are written in AppConstants
+     * 
+     * Material:
+     * Material is set by the AtomFactory and it is different for differnt atom types.
+     * 
+     * 
+     * ParentStructureTransform is for setting and getting its parents which is generally structure.
+     * 
+     * 
+     * 
+     */
     private GameObject _sphere;
     public Vector3 Position
     {
@@ -42,14 +64,6 @@ public abstract class Atom
     public Atom(Vector3 scale) : this()
     {
         Scale = scale;
-        
-
-    }
-
-    public Atom(Vector3 position, Vector3 scale) : this(scale)
-    {
-        Position = position;
-
     }
 
 }

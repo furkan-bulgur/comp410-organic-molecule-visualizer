@@ -4,6 +4,30 @@ using UnityEngine;
 
 public abstract class Bond 
 {
+    /*
+     * Bond:
+     * 
+     * It is an object mainly to show bonds. When there is a bond between two atoms.
+     * There is a two cylinder between them. One for one atom and other for other atom.
+     * Bonds material are the same with the material to which bond binded.
+     * 
+     * Position:
+     * Relative to its parent which is a Structure
+     * 
+     * Scale is default and all bonds have same scale
+     * 
+     * Rotation is a quaternion and it is not directly accesed
+     * 
+     * Direction:
+     * 
+     * Direction is a unit vector representing where bond is directed to. 
+     * When it set it changes also the bond's rotation so that bond is aligned with 
+     * the direction.
+     * Directions are default and not changes during runtime. The default directions are 
+     * in the AppConstants and determined by the structures type.   
+     * 
+     * 
+     */
     private GameObject _cylinder;
     private Vector3 _direction;
 
@@ -72,7 +96,12 @@ public abstract class Bond
 
     public void SetBondAccordingToAtom(Atom atom, Vector3 direction)
     {
-        Direction = direction; //Before because it needs to be normalized
+        // Bonds position needs to be set according to atoms position and its radius.
+
+        Direction = direction; //Setting direction and normalizing direction
+        // Setting position..
+        // Position equals to atoms position plus adding BondLength/2 and BondLengthInsideAtom and atom radius
+        // in the direction. 
         Position = atom.Position + Direction * (AppConstants.BondLength / 2 + atom.Radius - AppConstants.BondLengthInsideAtom);
         
         

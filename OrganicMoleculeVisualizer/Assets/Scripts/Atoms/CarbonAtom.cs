@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CarbonAtom : Atom
 {
-    
+    /*
+     * CarbonAtom
+     * 
+     * It is a pure Atom with only scale is set to CarbonAtomScale
+     * 
+     */
     public CarbonAtom() : base(AppConstants.CarbonAtomScale)
     {
-    }
-
-    public CarbonAtom(Vector3 position) : base(position,AppConstants.CarbonAtomScale)
-    {
-
     }
 
 }

@@ -34,7 +34,7 @@ public abstract class Structure
         _structure = new GameObject("Structure");
         _atom = atom;
         _atom.ParentStructureTransform = _structure.transform;
-        //Rotation = AppConstants.DefaultRotation;
+        
        
     }
     public Structure(Atom atom, Vector3 position) : this(atom)
