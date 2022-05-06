@@ -34,15 +34,15 @@ public class NameParser
             atomFactory.CreateHydrogenAtom();
             return "Hydrogen";
         }
-        else if (name.Equals(HydrogenMolecule))
-        {
-            new HydrogenMolecule();
-            return "Hydrogen Molecule";
-        }
-        else if (name.Equals("test"))
+        else if (name.Equals("methane"))
         {
             new Alkane(1);
             return "Methane";
+        }
+        else if (name.Equals("test"))
+        {
+            new Alkane(5);
+            return "Ethane";
         }
         return "Invalid Name";
     }

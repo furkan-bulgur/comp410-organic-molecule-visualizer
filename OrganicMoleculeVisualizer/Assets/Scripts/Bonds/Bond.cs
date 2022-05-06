@@ -98,7 +98,7 @@ public abstract class Bond
     {
         // Bonds position needs to be set according to atoms position and its radius.
 
-        Direction = direction; //Setting direction and normalizing direction
+        Direction = atom.Rotation * direction; //Setting direction and normalizing direction
         // Setting position..
         // Position equals to atoms position plus adding BondLength/2 and BondLengthInsideAtom and atom radius
         // in the direction. 

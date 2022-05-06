@@ -6,7 +6,8 @@ public abstract class Structure
 {
     protected GameObject _structure;
     private Atom _atom;
-    protected Dictionary<Bond, Structure> bindings = new Dictionary<Bond, Structure>();
+    public int totalBondNum;
+    protected Dictionary<int, Structure> bindings = new Dictionary<int, Structure>();
     protected Dictionary<int, Bond> bonds = new Dictionary<int, Bond>();
     public Atom Atom
     {
@@ -20,7 +21,10 @@ public abstract class Structure
     public Quaternion Rotation
     {
         get { return _structure.transform.rotation; }
-        set { _structure.transform.rotation = value.normalized; }
+        set {
+                _structure.transform.rotation = value.normalized;
+                Atom.Rotation = _structure.transform.rotation;
+            }
     }
 
     public Transform ParentStructureTransform
@@ -56,7 +60,7 @@ public abstract class Structure
     public abstract void BindBond(int bondNum);
     public void BindStructure(Structure structure, int bondNum = AppConstants.SingleBondNum)
     {
-        bindings[bonds[bondNum]] = structure;
+        bindings[bondNum] = structure;
     }
     public bool IsBondBinded(int bondNum)
     {
@@ -65,9 +69,7 @@ public abstract class Structure
 
     public Vector3 GetBondDirection(int bondNum)
     {
-        Bond bond = bonds[bondNum];
-        Vector3 actualDirectionVector = Rotation * bond.Direction;
-        return actualDirectionVector;
+        return bonds[bondNum].Direction;
     }
     public void AlignBondWithDirection(Vector3 direction, int bondNum)
     {

@@ -8,10 +8,11 @@ public class Alkane : OrganicMolecule
     public Alkane(int carbonNumber) : base()
     {
         _carbonNumber = carbonNumber;
-        if(_carbonNumber == 1)
+        if (_carbonNumber == 1)
         {
             Methane();
         }
+        CreateChainAlkane(carbonNumber);
     }
     public void Methane()
     {
@@ -27,12 +28,39 @@ public class Alkane : OrganicMolecule
         BindStructures(carbon, hydrogen2, 2, 1);
         BindStructures(carbon, hydrogen3, 3, 1);
         BindStructures(carbon, hydrogen4, 4, 1);
-        Add(carbon);
-        Add(hydrogen1);
-        Add(hydrogen2);
-        Add(hydrogen3);
-        Add(hydrogen4);
+        AddCarbon(carbon);
+        AddHydrogen(hydrogen1);
+        AddHydrogen(hydrogen2);
+        AddHydrogen(hydrogen3);
+        AddHydrogen(hydrogen4);
 
+    }
+
+    public void CreateChainAlkane(int carbonNum)
+    {
+        if(carbonNum > AppConstants.AllowedAlkaneChainMaxCarbonNum)
+        {
+            throw new System.Exception("Allowed Alkane Chain Num Exceeded");
+        }
+        StructureFactory structureFactory = new StructureFactory();
+        AtomFactory atomFactory = GameObject.Find("AtomFactory").GetComponent<AtomFactory>();
+
+        Structure successorCarbon = null;
+        Structure predecessorCarbon = structureFactory.CreateTetrahedralStructure(atomFactory.CreateCarbonAtom());
+        while(carbonNum > 1)
+        {
+            successorCarbon = structureFactory.CreateTetrahedralStructure(atomFactory.CreateCarbonAtom());
+            BindStructures(predecessorCarbon, successorCarbon, 1, 2);
+            AddCarbon(predecessorCarbon);
+            predecessorCarbon = successorCarbon;
+            carbonNum -= 1;
+        }
+        if(successorCarbon != null)
+        {
+            AddCarbon(successorCarbon);
+        }
+        PopulateWithHydrogen();
+        
     }
 
 }

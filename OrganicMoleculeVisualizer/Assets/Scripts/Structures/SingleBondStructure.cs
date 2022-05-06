@@ -7,7 +7,7 @@ public class SingleBondStructure : Structure
     
     public SingleBondStructure(Atom atom) : base(atom)
     {
- 
+        totalBondNum = AppConstants.SingleBondTotalBondNum;
     }
     public override void BindBond(int bondNum)
     {

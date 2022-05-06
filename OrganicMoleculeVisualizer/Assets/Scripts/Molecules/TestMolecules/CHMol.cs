@@ -12,8 +12,8 @@ public class CHMol : TestMolecules
         Structure carbon = structureFactory.CreateSingleBondStructure(atomFactory.CreateCarbonAtom());
         Structure hydrogen = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
         BindStructures(carbon, hydrogen, 1, 1);
-        Add(carbon);
-        Add(hydrogen);
+        AddCarbon(carbon);
+        AddHydrogen(hydrogen);
 
     }
 }

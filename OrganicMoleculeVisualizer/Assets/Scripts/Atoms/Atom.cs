@@ -17,6 +17,11 @@ public abstract class Atom
      * Scale changes from atom to atom. The default scales for different type of atoms
      * are written in AppConstants
      * 
+     * Rotation:
+     * Atoms rotation visually represents nothing but it is helpful in understanding the
+     * directions of bonds. Atoms rotation is same as its parent structure's rotation and
+     * it is set when structure's rotation is set.
+     * 
      * Material:
      * Material is set by the AtomFactory and it is different for differnt atom types.
      * 
@@ -36,6 +41,11 @@ public abstract class Atom
     {
         get { return _sphere.transform.localScale; }
         set { _sphere.transform.localScale = value; }
+    }
+    public Quaternion Rotation
+    {
+        get { return _sphere.transform.rotation; }
+        set { _sphere.transform.rotation = value; }
     }
     public Material Material
     {
