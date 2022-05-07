@@ -37,6 +37,6 @@ public static class AppConstants
         {4, new Vector3(-1,-1,-1) },
     };
 
-    public static int AllowedAlkaneChainMaxCarbonNum = 5;
+    public static int AllowedAlkaneChainMaxCarbonNum = 6;
 
 }

@@ -10,12 +10,17 @@ public class Main : MonoBehaviour
     [SerializeField] public AtomFactory atomFactory;
     [SerializeField] public GameObject temp;
 
+    private Molecule _currentMolecule;
+    public Molecule CurrentMolecule
+    {
+        get { return _currentMolecule; }
+        set { _currentMolecule = value; }
+    }
+
     private NameParser nameParser;
     void Start()
     {
-        nameParser = new NameParser(atomFactory);
-       
-        
+        nameParser = new NameParser(this,atomFactory); 
     }
 
     // Update is called once per frame
@@ -23,9 +28,17 @@ public class Main : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            infoText.text = nameParser.parseAndCreate(nameInput.text);
+            nameParser.parseAndCreate(nameInput.text);
         }
     }
 
-    
+    public void setInfoText(string text)
+    {
+        infoText.text = text;
+    }
+
+    public void destroyPrevMolecule()
+    {
+        Destroy(GameObject.Find("Molecule"));
+    }
 }
