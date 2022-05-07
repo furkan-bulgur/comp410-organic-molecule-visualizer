@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class OrganicMolecule : Molecule
 {
+
+    protected List<Structure> carbonStructures = new List<Structure>();
+    public List<Structure> CarbonStructures
+    {
+        get { return carbonStructures; }
+    }
+    protected List<Structure> hydrogenStructures = new List<Structure>();
+
     public OrganicMolecule() : base() { }
 
     public void PopulateWithHydrogen()
@@ -23,5 +31,15 @@ public class OrganicMolecule : Molecule
                 }
             }
         }
+    }
+    public void AddCarbon(Structure structure)
+    {
+        structure.ParentStructureTransform = _molecule.transform;
+        carbonStructures.Add(structure);
+    }
+    public void AddHydrogen(Structure structure)
+    {
+        structure.ParentStructureTransform = _molecule.transform;
+        hydrogenStructures.Add(structure);
     }
 }

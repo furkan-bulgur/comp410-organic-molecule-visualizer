@@ -41,4 +41,6 @@ public class NameParser
     {
         _main.setInfoText(name);
     }
+
+    
 }

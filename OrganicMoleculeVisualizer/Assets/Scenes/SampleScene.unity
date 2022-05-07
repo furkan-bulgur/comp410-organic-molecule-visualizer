@@ -836,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1197570679}
   m_Layer: 0
-  m_Name: Molecule
+  m_Name: TestMolecule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,7 +14,11 @@ public class Main : MonoBehaviour
     public Molecule CurrentMolecule
     {
         get { return _currentMolecule; }
-        set { _currentMolecule = value; }
+        set
+        {
+            _currentMolecule = value;
+            AlignMolecule(_currentMolecule);
+        }
     }
 
     private NameParser nameParser;
@@ -40,5 +44,23 @@ public class Main : MonoBehaviour
     public void destroyPrevMolecule()
     {
         Destroy(GameObject.Find("Molecule"));
+    }
+
+    public void AlignMolecule(Molecule molecule)
+    {
+        Vector3 total = new Vector3(0, 0, 0);
+        int count = 0;
+        if(CurrentMolecule is OrganicMolecule)
+        {
+            OrganicMolecule organicMolecule = (OrganicMolecule)molecule;
+            foreach (Structure structure in organicMolecule.CarbonStructures)
+            {
+                total += structure.Atom.Position;
+                count++;
+            }
+        }
+        total /= count;
+        molecule.Position -= total;
+        molecule.Rotation = Quaternion.FromToRotation(total, Vector3.right);
     }
 }
