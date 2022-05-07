@@ -5,6 +5,12 @@ using UnityEngine;
 public class Molecule 
 {
     protected GameObject _molecule;
+
+    protected List<Structure> allStructures = new List<Structure>();
+    public List<Structure> AllStructures
+    {
+        get { return allStructures; }
+    }
     
     public Vector3 Position
     {
@@ -15,6 +21,10 @@ public class Molecule
     {
         get { return _molecule.transform.rotation; }
         set { _molecule.transform.rotation = value.normalized; }
+    }
+    public Transform MoleculeTransform
+    {
+        get { return _molecule.transform; }
     }
     
     public Molecule()

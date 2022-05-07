@@ -36,10 +36,12 @@ public class OrganicMolecule : Molecule
     {
         structure.ParentStructureTransform = _molecule.transform;
         carbonStructures.Add(structure);
+        allStructures.Add(structure);
     }
     public void AddHydrogen(Structure structure)
     {
         structure.ParentStructureTransform = _molecule.transform;
         hydrogenStructures.Add(structure);
+        allStructures.Add(structure);
     }
 }

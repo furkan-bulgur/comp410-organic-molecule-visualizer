@@ -8,33 +8,29 @@ public class Alkane : OrganicMolecule
     public Alkane(int carbonNumber) : base()
     {
         _carbonNumber = carbonNumber;
-        if (_carbonNumber == 1)
-        {
-            Methane();
-        }
         CreateChainAlkane(carbonNumber);
     }
-    public void Methane()
-    {
-        StructureFactory structureFactory = new StructureFactory();
-        AtomFactory atomFactory = GameObject.Find("AtomFactory").GetComponent<AtomFactory>();
+    //public void Methane()
+    //{
+    //    StructureFactory structureFactory = new StructureFactory();
+    //    AtomFactory atomFactory = GameObject.Find("AtomFactory").GetComponent<AtomFactory>();
 
-        Structure carbon = structureFactory.CreateTetrahedralStructure(atomFactory.CreateCarbonAtom());
-        Structure hydrogen1 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
-        Structure hydrogen2 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
-        Structure hydrogen3 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
-        Structure hydrogen4 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
-        BindStructures(carbon, hydrogen1, 1, 1);
-        BindStructures(carbon, hydrogen2, 2, 1);
-        BindStructures(carbon, hydrogen3, 3, 1);
-        BindStructures(carbon, hydrogen4, 4, 1);
-        AddCarbon(carbon);
-        AddHydrogen(hydrogen1);
-        AddHydrogen(hydrogen2);
-        AddHydrogen(hydrogen3);
-        AddHydrogen(hydrogen4);
+    //    Structure carbon = structureFactory.CreateTetrahedralStructure(atomFactory.CreateCarbonAtom());
+    //    Structure hydrogen1 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
+    //    Structure hydrogen2 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
+    //    Structure hydrogen3 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
+    //    Structure hydrogen4 = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
+    //    BindStructures(carbon, hydrogen1, 1, 1);
+    //    BindStructures(carbon, hydrogen2, 2, 1);
+    //    BindStructures(carbon, hydrogen3, 3, 1);
+    //    BindStructures(carbon, hydrogen4, 4, 1);
+    //    AddCarbon(carbon);
+    //    AddHydrogen(hydrogen1);
+    //    AddHydrogen(hydrogen2);
+    //    AddHydrogen(hydrogen3);
+    //    AddHydrogen(hydrogen4);
 
-    }
+    //}
 
     public void CreateChainAlkane(int carbonNum)
     {
@@ -55,9 +51,9 @@ public class Alkane : OrganicMolecule
             predecessorCarbon = successorCarbon;
             carbonNum -= 1;
         }
-        if(successorCarbon != null)
+        if(predecessorCarbon != null)
         {
-            AddCarbon(successorCarbon);
+            AddCarbon(predecessorCarbon);
         }
         PopulateWithHydrogen();
         
