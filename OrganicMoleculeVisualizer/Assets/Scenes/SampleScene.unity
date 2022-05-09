@@ -634,6 +634,8 @@ MonoBehaviour:
   infoText: {fileID: 2096873971}
   atomFactory: {fileID: 466055463}
   temp: {fileID: 192096619}
+  rotationSpeed: 20
+  cam: {fileID: 963194227}
 --- !u!4 &832968851
 Transform:
   m_ObjectHideFlags: 0
