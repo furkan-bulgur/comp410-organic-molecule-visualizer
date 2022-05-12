@@ -7,7 +7,7 @@ public abstract class Structure
     protected GameObject _structure;
     private Atom _atom;
     public int totalBondNum;
-    protected Dictionary<int, Structure> bindings = new Dictionary<int, Structure>();
+    //protected Dictionary<int, Structure> bindings = new Dictionary<int, Structure>();
     protected Dictionary<int, Bond> bonds = new Dictionary<int, Bond>();
     public Atom Atom
     {
@@ -58,10 +58,10 @@ public abstract class Structure
 
     
     public abstract void BindBond(int bondNum);
-    public void BindStructure(Structure structure, int bondNum = AppConstants.SingleBondNum)
-    {
-        bindings[bondNum] = structure;
-    }
+    //public void BindStructure(Structure structure, int bondNum = AppConstants.SingleBondNum)
+    //{
+    //    bindings[bondNum] = structure;
+    //}
     public bool IsBondBinded(int bondNum)
     {
         return bonds.ContainsKey(bondNum);

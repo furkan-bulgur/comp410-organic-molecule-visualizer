@@ -34,9 +34,9 @@ public class AlkaneParser
             _nameParser.setName("Butane");
             return new Alkane(4);
         }
-        else if (name.Equals("heptane"))
+        else if (name.Equals("pentane"))
         {
-            _nameParser.setName("Heptane");
+            _nameParser.setName("Pentane");
             return new Alkane(5);
         }
         else if (name.Equals("hexane"))

@@ -4,44 +4,24 @@ using UnityEngine;
 
 public class OrganicMolecule : Molecule
 {
-
-    protected List<Structure> carbonStructures = new List<Structure>();
-    public List<Structure> CarbonStructures
+    StructureFactory structureFactory = new StructureFactory();
+    protected OrganicMolecule() : base()
     {
-        get { return carbonStructures; }
+        
     }
-    protected List<Structure> hydrogenStructures = new List<Structure>();
-
-    public OrganicMolecule() : base() { }
+    public OrganicMolecule(Structure rootStructure) : base(rootStructure) { }
 
     public void PopulateWithHydrogen()
     {
-        StructureFactory structureFactory = new StructureFactory();
-        AtomFactory atomFactory = GameObject.Find("AtomFactory").GetComponent<AtomFactory>();
-
-        foreach (Structure carbonStructure in carbonStructures)
+        List<MoleculeTreeNode> carbonNodes = rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
+        foreach(MoleculeTreeNode carbonNode in carbonNodes)
         {
-            for(int i = 1; i < carbonStructure.totalBondNum + 1; i++)
+            foreach(int num in carbonNode.GetUnbindedBondNums())
             {
-                if (!carbonStructure.IsBondBinded(i))
-                {
-                    Structure hydrogen = structureFactory.CreateSingleBondStructure(atomFactory.CreateHydrogenAtom());
-                    BindStructures(carbonStructure, hydrogen, i, 1);
-                    AddHydrogen(hydrogen);
-                }
+                carbonNode.BindChild(new MoleculeTreeNode(structureFactory.CreateSingleBondStructure<HydrogenAtom>()), num, 1);
             }
         }
+
     }
-    public void AddCarbon(Structure structure)
-    {
-        structure.ParentStructureTransform = _molecule.transform;
-        carbonStructures.Add(structure);
-        allStructures.Add(structure);
-    }
-    public void AddHydrogen(Structure structure)
-    {
-        structure.ParentStructureTransform = _molecule.transform;
-        hydrogenStructures.Add(structure);
-        allStructures.Add(structure);
-    }
+    
 }

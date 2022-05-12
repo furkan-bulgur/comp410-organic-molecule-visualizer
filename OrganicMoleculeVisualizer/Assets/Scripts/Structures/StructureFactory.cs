@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class StructureFactory 
 {
-    public Structure CreateSingleBondStructure(Atom atom)
+    AtomFactory atomFactory = GameObject.Find("AtomFactory").GetComponent<AtomFactory>();
+
+    public Structure CreateSingleBondStructure<A>() where A : Atom
     {
-        return new SingleBondStructure(atom);
+        return new SingleBondStructure(atomFactory.CreateAtom<A>());
     }
 
-    public Structure CreateTetrahedralStructure(Atom atom)
+    public Structure CreateTetrahedralStructure<A>() where A : Atom
     {
-        return new TetrahedralStructure(atom);
+        return new TetrahedralStructure(atomFactory.CreateAtom<A>());
     }
 }

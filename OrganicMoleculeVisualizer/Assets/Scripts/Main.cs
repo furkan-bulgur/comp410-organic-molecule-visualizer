@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Main : MonoBehaviour
 {
@@ -61,23 +62,19 @@ public class Main : MonoBehaviour
 
     public void AlignMolecule(Molecule molecule)
     {
-        Vector3 total = new Vector3(0, 0, 0);
-        int count = 0;
-        if(CurrentMolecule is OrganicMolecule)
+        List<MoleculeTreeNode> nodes = CurrentMolecule.rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
+        float count = nodes.Count;
+        Vector3 total = nodes.Aggregate<MoleculeTreeNode, Vector3>(new Vector3(0f, 0f, 0f), (sum, node) =>
+           {
+               sum += node.NodeStructure.Position;
+               return sum;
+           });
+        Vector3 shift = total / count;
+        List<MoleculeTreeNode> allNodes = CurrentMolecule.rootTreeNode.GetAllNodes();
+        foreach (MoleculeTreeNode node in allNodes)
         {
-            OrganicMolecule organicMolecule = (OrganicMolecule)molecule;
-            foreach (Structure structure in organicMolecule.CarbonStructures)
-            {
-                total += structure.Atom.Position;
-                count++;
-            }
+            node.NodeStructure.Position -= shift;
         }
-        total /= count;
-        //molecule.Position -= total;
-        foreach(Structure structure in molecule.AllStructures)
-        {
-            structure.Position -= total;
-        }
-        molecule.Rotation = Quaternion.FromToRotation(total, Vector3.right);
+        CurrentMolecule.Rotation = Quaternion.FromToRotation(shift, Vector3.right);
     }
 }

@@ -6,12 +6,7 @@ public class Molecule
 {
     protected GameObject _molecule;
 
-    protected List<Structure> allStructures = new List<Structure>();
-    public List<Structure> AllStructures
-    {
-        get { return allStructures; }
-    }
-    
+    public MoleculeTreeNode rootTreeNode;
     public Vector3 Position
     {
         get { return _molecule.transform.position; }
@@ -26,29 +21,20 @@ public class Molecule
     {
         get { return _molecule.transform; }
     }
-    
-    public Molecule()
+
+
+    protected Molecule()
     {
         _molecule = new GameObject("Molecule");
     }
 
-    protected void BindStructures(Structure mainStructure, Structure sideStructure, int mainStructureBondNum, int sideStructureBondNum)
+    public Molecule(Structure rootStructure)
     {
-        if (!mainStructure.IsBondBinded(mainStructureBondNum))
-        {
-            mainStructure.BindBond(mainStructureBondNum);
-        }
-        if (!sideStructure.IsBondBinded(sideStructureBondNum))
-        {
-            sideStructure.BindBond(sideStructureBondNum);
-        }
-        Vector3 mainDirectionVector = mainStructure.GetBondDirection(mainStructureBondNum);
-        Vector3 sideDirectionVector = -1 * mainDirectionVector;
-        sideStructure.AlignBondWithDirection(sideDirectionVector, sideStructureBondNum);
-        sideStructure.Position = mainStructure.Position;
-        sideStructure.Position += mainDirectionVector.normalized * (2*AppConstants.BondLengthOutsideAtom + mainStructure.Atom.Radius + sideStructure.Atom.Radius);
-        mainStructure.BindStructure(sideStructure, mainStructureBondNum);
-        sideStructure.BindStructure(mainStructure, sideStructureBondNum);
+        _molecule = new GameObject("Molecule");
+        rootTreeNode = new MoleculeTreeNode(rootStructure);
+        rootTreeNode.NodeStructure.ParentStructureTransform = MoleculeTransform;
     }
+
+    
 
 }

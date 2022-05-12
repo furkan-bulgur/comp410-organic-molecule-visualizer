@@ -14,18 +14,34 @@ public class AtomFactory : MonoBehaviour
     [SerializeField] public Material carbonMaterial;
     [SerializeField] public Material hydrogenMaterial;
 
-    public Atom CreateCarbonAtom()
+    private Atom CreateCarbonAtom()
     {
         CarbonAtom carbon = new CarbonAtom();
         carbon.Material = carbonMaterial;
         return carbon;
     }
 
-    public Atom CreateHydrogenAtom()
+    private Atom CreateHydrogenAtom()
     {
         HydrogenAtom hydrogen = new HydrogenAtom();
         hydrogen.Material = hydrogenMaterial;
         return hydrogen;
+    }
+
+    public Atom CreateAtom<A>() where A : Atom
+    {
+        if(typeof(A) == typeof(CarbonAtom))
+        {
+            return CreateCarbonAtom();
+        }
+        else if (typeof(A) == typeof(HydrogenAtom))
+        {
+            return CreateHydrogenAtom();
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }
