@@ -16,7 +16,11 @@ public class MoleculeTreeNode
         set { _parentNode = value; }
     }
     // Node's bond index which connected to parent
-    public int ParentBondIndex
+    public int ChildToParentBond
+    {
+        get; set;
+    }
+    public int ParentToChildBond
     {
         get; set;
     }
@@ -26,7 +30,7 @@ public class MoleculeTreeNode
     public MoleculeTreeNode(Structure nodeStructure)
     {
         _nodeStructure = nodeStructure;
-        ParentBondIndex = -1;
+        ChildToParentBond = -1;
         _parentNode = null;
         
     }
@@ -60,7 +64,7 @@ public class MoleculeTreeNode
         }
     }
 
-    public List<MoleculeTreeNode> GetChilds()
+    public List<MoleculeTreeNode> GetChildren()
     {
         List<MoleculeTreeNode> childs = new List<MoleculeTreeNode>();
         foreach(MoleculeTreeNode node in _childStructures.Values)
@@ -75,7 +79,7 @@ public class MoleculeTreeNode
         List<int> nums = new List<int>();
         for(int i = 1; i <= NodeStructure.totalBondNum; i++)
         {
-            if(ParentBondIndex != i && !_childStructures.ContainsKey(i))
+            if(ChildToParentBond != i && !_childStructures.ContainsKey(i))
             {
                 nums.Add(i);
             }
@@ -92,7 +96,7 @@ public class MoleculeTreeNode
         {
             MoleculeTreeNode current = visit.Pop();
             if (current.IsAtomNode<A>()) nodes.Add(current);
-            foreach (MoleculeTreeNode child in current.GetChilds())
+            foreach (MoleculeTreeNode child in current.GetChildren())
             {
                 visit.Push(child);
             }
@@ -109,7 +113,7 @@ public class MoleculeTreeNode
         {
             MoleculeTreeNode current = visit.Pop();
             nodes.Add(current);
-            foreach (MoleculeTreeNode child in current.GetChilds())
+            foreach (MoleculeTreeNode child in current.GetChildren())
             {
                 visit.Push(child);
             }
@@ -121,7 +125,8 @@ public class MoleculeTreeNode
     {
         
         _childStructures[parentToChildBondIndex] = child;
-        child.ParentBondIndex = childToParentBondIndex;
+        child.ChildToParentBond = childToParentBondIndex;
+        child.ParentToChildBond = parentToChildBondIndex;
         Structure mainStructure = NodeStructure;
         Structure sideStructure = child.NodeStructure;
         sideStructure.ParentStructureTransform = mainStructure.ParentStructureTransform;
@@ -140,6 +145,15 @@ public class MoleculeTreeNode
         sideStructure.Position = mainStructure.Position;
         sideStructure.Position += mainDirectionVector.normalized * (2 * AppConstants.BondLengthOutsideAtom + mainStructure.Atom.Radius + sideStructure.Atom.Radius);
 
+    }
+
+    public void RotateWithChildren(RotationAroundAxis rax)
+    {
+        rax.RotateTransform(NodeStructure.Transform);
+        foreach(MoleculeTreeNode child in GetChildren())
+        {
+            child.RotateWithChildren(rax);
+        }
     }
 
 

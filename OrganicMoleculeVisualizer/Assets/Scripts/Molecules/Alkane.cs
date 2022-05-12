@@ -32,7 +32,24 @@ public class Alkane : OrganicMolecule
         }
 
         PopulateWithHydrogen();
+        ArrangeConformations();
 
+    }
+
+    public void ArrangeConformations()
+    {
+        if(_carbonNumber == 2)
+        {
+            foreach(MoleculeTreeNode child in rootTreeNode.GetChildren())
+            {
+                if (child.IsAtomNode<CarbonAtom>())
+                {
+                    RotationAroundAxis rax = ConformationUtil.StaggerRotation(rootTreeNode, child);
+                    child.RotateWithChildren(rax);
+
+                }
+            }
+        }
     }
 
 }

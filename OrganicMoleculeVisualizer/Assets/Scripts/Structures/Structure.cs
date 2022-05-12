@@ -13,6 +13,10 @@ public abstract class Structure
     {
         get { return _atom; }
     }
+    public Transform Transform
+    {
+        get { return _structure.transform; }
+    }
     public Vector3 Position
     {
         get { return _structure.transform.position; }
