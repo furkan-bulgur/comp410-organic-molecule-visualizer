@@ -13,12 +13,12 @@ public class OrganicMolecule : Molecule
 
     public void PopulateWithHydrogen()
     {
-        List<MoleculeTreeNode> carbonNodes = rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
-        foreach(MoleculeTreeNode carbonNode in carbonNodes)
+        List<MoleculeNode> carbonNodes = rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
+        foreach(MoleculeNode carbonNode in carbonNodes)
         {
             foreach(int num in carbonNode.GetUnbindedBondNums())
             {
-                carbonNode.BindChild(new MoleculeTreeNode(structureFactory.CreateSingleBondStructure<HydrogenAtom>()), num, 1);
+                carbonNode.BindNode(new MoleculeNode(structureFactory.CreateSingleBondStructure<HydrogenAtom>()), num, 1);
             }
         }
 

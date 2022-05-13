@@ -62,16 +62,16 @@ public class Main : MonoBehaviour
 
     public void AlignMolecule(Molecule molecule)
     {
-        List<MoleculeTreeNode> nodes = CurrentMolecule.rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
+        List<MoleculeNode> nodes = CurrentMolecule.rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
         float count = nodes.Count;
-        Vector3 total = nodes.Aggregate<MoleculeTreeNode, Vector3>(new Vector3(0f, 0f, 0f), (sum, node) =>
+        Vector3 total = nodes.Aggregate<MoleculeNode, Vector3>(new Vector3(0f, 0f, 0f), (sum, node) =>
            {
                sum += node.NodeStructure.Position;
                return sum;
            });
         Vector3 shift = total / count;
-        List<MoleculeTreeNode> allNodes = CurrentMolecule.rootTreeNode.GetAllNodes();
-        foreach (MoleculeTreeNode node in allNodes)
+        List<MoleculeNode> allNodes = CurrentMolecule.rootTreeNode.GetAllNodes();
+        foreach (MoleculeNode node in allNodes)
         {
             node.NodeStructure.Position -= shift;
         }

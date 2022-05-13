@@ -10,7 +10,7 @@ public class Alkane : OrganicMolecule
     {
         _carbonNumber = carbonNumber;
 
-        rootTreeNode = new MoleculeTreeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
+        rootTreeNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
         rootTreeNode.NodeStructure.ParentStructureTransform = MoleculeTransform;
         CreateChainAlkane(carbonNumber);
     }
@@ -22,12 +22,12 @@ public class Alkane : OrganicMolecule
         {
             throw new System.Exception("Allowed Alkane Chain Num Exceeded");
         }
-        MoleculeTreeNode currentNode = rootTreeNode;
+        MoleculeNode currentNode = rootTreeNode;
         while(carbonNum > 1)
         {
-            MoleculeTreeNode childNode = new MoleculeTreeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
-            currentNode.BindChild(childNode, 2, 1);
-            currentNode = childNode;
+            MoleculeNode adjNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
+            currentNode.BindNode(adjNode, 2, 1);
+            currentNode = adjNode;
             carbonNum--;
         }
 
@@ -38,18 +38,18 @@ public class Alkane : OrganicMolecule
 
     public void ArrangeConformations()
     {
-        if(_carbonNumber == 2)
-        {
-            foreach(MoleculeTreeNode child in rootTreeNode.GetChildren())
-            {
-                if (child.IsAtomNode<CarbonAtom>())
-                {
-                    RotationAroundAxis rax = ConformationUtil.StaggerRotation(rootTreeNode, child);
-                    child.RotateWithChildren(rax);
+        //if(_carbonNumber == 2)
+        //{
+        //    foreach(MoleculeNode child in rootTreeNode.GetAllAdjacent())
+        //    {
+        //        if (child.IsAtomNode<CarbonAtom>())
+        //        {
+        //            RotationAroundAxis rax = ConformationUtil.StaggerRotation(rootTreeNode, child);
+        //            child.RotateWithChildren(rax);
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
     }
 
 }

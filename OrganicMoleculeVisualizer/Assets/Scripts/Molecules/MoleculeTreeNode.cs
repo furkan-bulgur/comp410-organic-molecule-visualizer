@@ -1,50 +1,36 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoleculeTreeNode
+public class MoleculeNode
 {
     private Structure _nodeStructure;
     public Structure NodeStructure
     {
         get { return _nodeStructure; }
     }
-    private MoleculeTreeNode _parentNode;
-    public MoleculeTreeNode Parent
-    {
-        get { return _parentNode; }
-        set { _parentNode = value; }
-    }
-    // Node's bond index which connected to parent
-    public int ChildToParentBond
-    {
-        get; set;
-    }
-    public int ParentToChildBond
-    {
-        get; set;
-    }
-    private Dictionary<int,MoleculeTreeNode> _childStructures = new Dictionary<int, MoleculeTreeNode>();
+    
+    private Dictionary<int,MoleculeNode> _adjacentStructures = new Dictionary<int, MoleculeNode>();
 
+    public void AddAdjecent(int bond, MoleculeNode node)
+    {
+        _adjacentStructures[bond] = node;
+    }
 
-    public MoleculeTreeNode(Structure nodeStructure)
+    public MoleculeNode(Structure nodeStructure)
     {
         _nodeStructure = nodeStructure;
-        ChildToParentBond = -1;
-        _parentNode = null;
         
     }
-    public MoleculeTreeNode(Structure nodeStructure, MoleculeTreeNode parentNode, int parentToChildBondIndex, int childToParentBondIndex)
+    public MoleculeNode(Structure nodeStructure, MoleculeNode mainNode, int mainToNodeBond, int nodeToMainBond)
     {
         _nodeStructure = nodeStructure;
-        Parent = parentNode;
-        Parent.BindChild(this, parentToChildBondIndex, childToParentBondIndex);
+        mainNode.BindNode(this, mainToNodeBond, nodeToMainBond);
 
     }
 
-    public bool HasChild()
+    public bool HasAdjecentNode()
     {
-        return _childStructures.Count != 0;
+        return _adjacentStructures.Count != 0;
     }
 
     public bool IsAtomNode<A>() where A : Atom
@@ -52,11 +38,11 @@ public class MoleculeTreeNode
         return NodeStructure.Atom is A;
     }
 
-    public MoleculeTreeNode GetChild(int i)
+    public MoleculeNode GetAdjacent(int i)
     {
-        if (_childStructures.ContainsKey(i))
+        if (_adjacentStructures.ContainsKey(i))
         {
-            return _childStructures[i];
+            return _adjacentStructures[i];
         }
         else
         {
@@ -64,14 +50,28 @@ public class MoleculeTreeNode
         }
     }
 
-    public List<MoleculeTreeNode> GetChildren()
+    public List<MoleculeNode> GetAllAdjacent()
     {
-        List<MoleculeTreeNode> childs = new List<MoleculeTreeNode>();
-        foreach(MoleculeTreeNode node in _childStructures.Values)
+        List<MoleculeNode> adjs = new List<MoleculeNode>();
+        foreach(MoleculeNode node in _adjacentStructures.Values)
         {
-            childs.Add(node);
+            adjs.Add(node);
         }
-        return childs;
+        return adjs;
+    }
+
+    public List<MoleculeNode> GetAllAdjacentWithout(int i)
+    {
+        List<MoleculeNode> adjs = new List<MoleculeNode>();
+        foreach (int bond in _adjacentStructures.Keys)
+        {
+            if(bond != i)
+            {
+                adjs.Add(_adjacentStructures[bond]);
+            }
+            
+        }
+        return adjs;
     }
 
     public List<int> GetUnbindedBondNums()
@@ -79,7 +79,7 @@ public class MoleculeTreeNode
         List<int> nums = new List<int>();
         for(int i = 1; i <= NodeStructure.totalBondNum; i++)
         {
-            if(ChildToParentBond != i && !_childStructures.ContainsKey(i))
+            if(!_adjacentStructures.ContainsKey(i))
             {
                 nums.Add(i);
             }
@@ -87,61 +87,63 @@ public class MoleculeTreeNode
         return nums;
     }
 
-    public List<MoleculeTreeNode> GetAllNodesWithAtom<A>() where A : Atom
+    public List<MoleculeNode> GetAllNodesWithAtom<A>() where A : Atom
     {
-        List<MoleculeTreeNode> nodes = new List<MoleculeTreeNode>();
-        Stack<MoleculeTreeNode> visit = new Stack<MoleculeTreeNode>();
+        List<MoleculeNode> nodes = new List<MoleculeNode>();
+        Stack<MoleculeNode> visit = new Stack<MoleculeNode>();
+        List<MoleculeNode> visited = new List<MoleculeNode>();
         visit.Push(this);
         while(visit.Count > 0)
         {
-            MoleculeTreeNode current = visit.Pop();
+            MoleculeNode current = visit.Pop();
+            visited.Add(current);
             if (current.IsAtomNode<A>()) nodes.Add(current);
-            foreach (MoleculeTreeNode child in current.GetChildren())
+            foreach (MoleculeNode adj in current.GetAllAdjacent())
             {
-                visit.Push(child);
+                if(!visited.Contains(adj)) visit.Push(adj);
             }
+            
         }
         return nodes;
     }
 
-    public List<MoleculeTreeNode> GetAllNodes() 
+    public List<MoleculeNode> GetAllNodes() 
     {
-        List<MoleculeTreeNode> nodes = new List<MoleculeTreeNode>();
-        Stack<MoleculeTreeNode> visit = new Stack<MoleculeTreeNode>();
+        Stack<MoleculeNode> visit = new Stack<MoleculeNode>();
+        List<MoleculeNode> visited = new List<MoleculeNode>();
         visit.Push(this);
         while (visit.Count > 0)
         {
-            MoleculeTreeNode current = visit.Pop();
-            nodes.Add(current);
-            foreach (MoleculeTreeNode child in current.GetChildren())
+            MoleculeNode current = visit.Pop();
+            visited.Add(current);
+            foreach (MoleculeNode adj in current.GetAllAdjacent())
             {
-                visit.Push(child);
+                if (!visited.Contains(adj)) visit.Push(adj);
             }
         }
-        return nodes;
+        return visited;
     }
 
-    public void BindChild(MoleculeTreeNode child, int parentToChildBondIndex, int childToParentBondIndex) 
+    public void BindNode(MoleculeNode adjNode, int thisToAdjBond, int adjToThisBond) 
     {
         
-        _childStructures[parentToChildBondIndex] = child;
-        child.ChildToParentBond = childToParentBondIndex;
-        child.ParentToChildBond = parentToChildBondIndex;
+        _adjacentStructures[thisToAdjBond] = adjNode;
+        adjNode.AddAdjecent(adjToThisBond, this);
         Structure mainStructure = NodeStructure;
-        Structure sideStructure = child.NodeStructure;
+        Structure sideStructure = adjNode.NodeStructure;
         sideStructure.ParentStructureTransform = mainStructure.ParentStructureTransform;
 
-        if (!mainStructure.IsBondBinded(parentToChildBondIndex))
+        if (!mainStructure.IsBondBinded(thisToAdjBond))
         {
-            mainStructure.BindBond(parentToChildBondIndex);
+            mainStructure.BindBond(thisToAdjBond);
         }
-        if (!sideStructure.IsBondBinded(childToParentBondIndex))
+        if (!sideStructure.IsBondBinded(adjToThisBond))
         {
-            sideStructure.BindBond(childToParentBondIndex);
+            sideStructure.BindBond(adjToThisBond);
         }
-        Vector3 mainDirectionVector = mainStructure.GetBondDirection(parentToChildBondIndex);
+        Vector3 mainDirectionVector = mainStructure.GetBondDirection(thisToAdjBond);
         Vector3 sideDirectionVector = -1 * mainDirectionVector;
-        sideStructure.AlignBondWithDirection(sideDirectionVector, childToParentBondIndex);
+        sideStructure.AlignBondWithDirection(sideDirectionVector, adjToThisBond);
         sideStructure.Position = mainStructure.Position;
         sideStructure.Position += mainDirectionVector.normalized * (2 * AppConstants.BondLengthOutsideAtom + mainStructure.Atom.Radius + sideStructure.Atom.Radius);
 
@@ -150,7 +152,7 @@ public class MoleculeTreeNode
     public void RotateWithChildren(RotationAroundAxis rax)
     {
         rax.RotateTransform(NodeStructure.Transform);
-        foreach(MoleculeTreeNode child in GetChildren())
+        foreach(MoleculeNode child in GetAllAdjacent())
         {
             child.RotateWithChildren(rax);
         }

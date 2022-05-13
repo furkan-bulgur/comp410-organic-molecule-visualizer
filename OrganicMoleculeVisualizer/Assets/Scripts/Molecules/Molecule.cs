@@ -6,7 +6,7 @@ public class Molecule
 {
     protected GameObject _molecule;
 
-    public MoleculeTreeNode rootTreeNode;
+    public MoleculeNode rootTreeNode;
     public Vector3 Position
     {
         get { return _molecule.transform.position; }
@@ -31,7 +31,7 @@ public class Molecule
     public Molecule(Structure rootStructure)
     {
         _molecule = new GameObject("Molecule");
-        rootTreeNode = new MoleculeTreeNode(rootStructure);
+        rootTreeNode = new MoleculeNode(rootStructure);
         rootTreeNode.NodeStructure.ParentStructureTransform = MoleculeTransform;
     }
 
