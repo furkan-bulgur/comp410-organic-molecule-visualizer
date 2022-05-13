@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StructureFactory 
@@ -25,5 +26,13 @@ public class StructureFactory
         Structure structure = new TetrahedralStructure(atomFactory.CreateAtom<A>());
         structure.Name = "Tetrahedral " + structure.Atom.Name + " Structure " + counts[typeof(A)];
         return structure;
+    }
+
+    public static void ResetCounts()
+    {
+        foreach (System.Type type in counts.Keys.ToList())
+        {
+            counts[type] = 0;
+        }
     }
 }

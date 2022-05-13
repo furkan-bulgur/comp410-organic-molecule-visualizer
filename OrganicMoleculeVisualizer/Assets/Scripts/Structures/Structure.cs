@@ -7,7 +7,6 @@ public abstract class Structure
     protected GameObject _structure;
     private Atom _atom;
     public int totalBondNum;
-    //protected Dictionary<int, Structure> bindings = new Dictionary<int, Structure>();
     protected Dictionary<int, Bond> bonds = new Dictionary<int, Bond>();
     public Atom Atom
     {
@@ -28,7 +27,22 @@ public abstract class Structure
         set {
                 _structure.transform.rotation = value.normalized;
                 Atom.Rotation = _structure.transform.rotation;
-            }
+                foreach (Bond bond in bonds.Values)
+                {
+                    bond.Direction = _structure.transform.rotation * bond.Direction;
+                }
+        }
+    }
+
+    public void RotateTransform(Vector3 point, Vector3 axis, float angle)
+    {
+        Transform.RotateAround(point, axis, angle);
+        Quaternion rotation = Quaternion.AngleAxis(angle, axis);
+        foreach (Bond bond in bonds.Values)
+        {
+            bond.Direction = rotation * bond.Direction;
+        }
+
     }
 
     public Transform ParentStructureTransform
@@ -81,6 +95,7 @@ public abstract class Structure
     {
         return bonds[bondNum].Direction;
     }
+
     public void AlignBondWithDirection(Vector3 direction, int bondNum)
     {
         Vector3 initialDirection = GetBondDirection(bondNum);

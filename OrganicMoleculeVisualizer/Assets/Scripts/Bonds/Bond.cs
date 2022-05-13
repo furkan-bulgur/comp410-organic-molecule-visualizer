@@ -38,6 +38,7 @@ public abstract class Bond
         {
             _direction = value.normalized;
             Rotation = Quaternion.FromToRotation(AppConstants.DefaultUpVector, _direction);
+            _cylinder.GetComponent<BondInfo>().direction = _direction;
         }
 
     }
@@ -79,6 +80,7 @@ public abstract class Bond
     private Bond()
     {
         _cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        _cylinder.AddComponent<BondInfo>();
         Direction = AppConstants.DefaultBondDirection;
     }
 

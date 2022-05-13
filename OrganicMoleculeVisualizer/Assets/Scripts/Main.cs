@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
     [SerializeField] public GameObject temp;
     [SerializeField] public float rotationSpeed = 20;
     [SerializeField] public Camera cam;
+    [SerializeField] public int conformationMaxDepth = 1;
 
     private Molecule _currentMolecule;
     public Molecule CurrentMolecule
@@ -20,7 +21,7 @@ public class Main : MonoBehaviour
         set
         {
             _currentMolecule = value;
-            if(_currentMolecule != null) AlignMolecule(_currentMolecule);
+            //if(_currentMolecule != null) AlignMolecule(_currentMolecule);
         }
     }
 
@@ -56,6 +57,7 @@ public class Main : MonoBehaviour
 
     public void destroyPrevMolecule()
     {
+        StructureFactory.ResetCounts();
         Destroy(GameObject.Find("Molecule"));
         CurrentMolecule = null;
     }
@@ -77,4 +79,5 @@ public class Main : MonoBehaviour
         }
         CurrentMolecule.Rotation = Quaternion.FromToRotation(shift, Vector3.right);
     }
+
 }

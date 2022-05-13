@@ -34,13 +34,15 @@ public class Alkane : OrganicMolecule
 
         PopulateWithHydrogen();
         ArrangeConformations(mainNode);
+        //ArrangeConformations(mainNode.GetAdjacent(2),1);
+        
 
     }
 
     public void ArrangeConformations(MoleculeNode node, int prevBond = -1)
     {
         conformationCalcDepth += 1;
-        if(conformationCalcDepth > 2)
+        if(conformationCalcDepth > GameObject.Find("MainObject").GetComponent<Main>().conformationMaxDepth)
         {
             return;
         }
@@ -50,6 +52,8 @@ public class Alkane : OrganicMolecule
             if (adj.IsAtomNode<CarbonAtom>() && bondList[0] != prevBond)
             {
                 RotationAroundAxis rax = ConformationUtil.StaggerRotation(node, adj, bondList);
+                Debug.Log(adj.NodeStructure.Name);
+                Debug.Log(rax);
                 adj.RotateWithChildren(rax, bondList[1]);
                 ArrangeConformations(adj, bondList[1]);
             }
