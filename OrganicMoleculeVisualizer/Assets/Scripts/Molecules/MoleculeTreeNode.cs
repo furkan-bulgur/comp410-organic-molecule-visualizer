@@ -9,11 +9,12 @@ public class MoleculeNode
         get { return _nodeStructure; }
     }
     
-    private Dictionary<int,MoleculeNode> _adjacentStructures = new Dictionary<int, MoleculeNode>();
+    private Dictionary<List<int>,MoleculeNode> _adjacentStructures = new Dictionary<List<int>, MoleculeNode>();
 
-    public void AddAdjecent(int bond, MoleculeNode node)
+    public void AddAdjecent(int bondToAdj, int bondAdjtoThis, MoleculeNode node)
     {
-        _adjacentStructures[bond] = node;
+        List<int> bondList = new List<int> { bondToAdj, bondAdjtoThis };
+        _adjacentStructures[bondList] = node;
     }
 
     public MoleculeNode(Structure nodeStructure)
@@ -40,14 +41,14 @@ public class MoleculeNode
 
     public MoleculeNode GetAdjacent(int i)
     {
-        if (_adjacentStructures.ContainsKey(i))
+        foreach(List<int> bondList in _adjacentStructures.Keys)
         {
-            return _adjacentStructures[i];
+            if(bondList[0] == i)
+            {
+                return _adjacentStructures[bondList];
+            }
         }
-        else
-        {
-            throw new KeyNotFoundException();
-        }
+        return null;
     }
 
     public List<MoleculeNode> GetAllAdjacent()
@@ -63,23 +64,23 @@ public class MoleculeNode
     public List<MoleculeNode> GetAllAdjacentWithout(int i)
     {
         List<MoleculeNode> adjs = new List<MoleculeNode>();
-        foreach (int bond in _adjacentStructures.Keys)
+        foreach (List<int> bondList in _adjacentStructures.Keys)
         {
-            if(bond != i)
+            if (bondList[0] != i)
             {
-                adjs.Add(_adjacentStructures[bond]);
+                adjs.Add(_adjacentStructures[bondList]);
             }
-            
         }
         return adjs;
     }
 
     public List<int> GetUnbindedBondNums()
     {
+        List<int> bindedBonds = GetBindedBondNums();
         List<int> nums = new List<int>();
         for(int i = 1; i <= NodeStructure.totalBondNum; i++)
         {
-            if(!_adjacentStructures.ContainsKey(i))
+            if(!bindedBonds.Contains(i))
             {
                 nums.Add(i);
             }
@@ -87,6 +88,15 @@ public class MoleculeNode
         return nums;
     }
 
+    public List<int> GetBindedBondNums()
+    {
+        List<int> nums = new List<int>();
+        foreach (List<int> bondList in _adjacentStructures.Keys)
+        {
+            nums.Add(bondList[0]);
+        }
+        return nums;
+    }
     public List<MoleculeNode> GetAllNodesWithAtom<A>() where A : Atom
     {
         List<MoleculeNode> nodes = new List<MoleculeNode>();
@@ -126,9 +136,8 @@ public class MoleculeNode
 
     public void BindNode(MoleculeNode adjNode, int thisToAdjBond, int adjToThisBond) 
     {
-        
-        _adjacentStructures[thisToAdjBond] = adjNode;
-        adjNode.AddAdjecent(adjToThisBond, this);
+        AddAdjecent(thisToAdjBond, adjToThisBond, adjNode);
+        adjNode.AddAdjecent(adjToThisBond, thisToAdjBond , this);
         Structure mainStructure = NodeStructure;
         Structure sideStructure = adjNode.NodeStructure;
         sideStructure.ParentStructureTransform = mainStructure.ParentStructureTransform;

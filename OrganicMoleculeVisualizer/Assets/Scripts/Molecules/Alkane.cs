@@ -38,14 +38,15 @@ public class Alkane : OrganicMolecule
 
     public void ArrangeConformations()
     {
-        //if(_carbonNumber == 2)
+        //if (_carbonNumber == 2)
         //{
-        //    foreach(MoleculeNode child in rootTreeNode.GetAllAdjacent())
+            
+        //    foreach (MoleculeNode adj in rootTreeNode.GetAllAdjacent())
         //    {
-        //        if (child.IsAtomNode<CarbonAtom>())
+        //        if (adj.IsAtomNode<CarbonAtom>())
         //        {
-        //            RotationAroundAxis rax = ConformationUtil.StaggerRotation(rootTreeNode, child);
-        //            child.RotateWithChildren(rax);
+        //            RotationAroundAxis rax = ConformationUtil.StaggerRotation(rootTreeNode, adj);
+        //            adj.RotateWithChildren(rax);
 
         //        }
         //    }
