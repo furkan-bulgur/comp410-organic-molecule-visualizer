@@ -13,7 +13,7 @@ public class OrganicMolecule : Molecule
 
     public void PopulateWithHydrogen()
     {
-        List<MoleculeNode> carbonNodes = rootTreeNode.GetAllNodesWithAtom<CarbonAtom>();
+        List<MoleculeNode> carbonNodes = mainNode.GetAllNodesWithAtom<CarbonAtom>();
         foreach(MoleculeNode carbonNode in carbonNodes)
         {
             foreach(int num in carbonNode.GetUnbindedBondNums())

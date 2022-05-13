@@ -10,8 +10,8 @@ public class Alkane : OrganicMolecule
     {
         _carbonNumber = carbonNumber;
 
-        rootTreeNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
-        rootTreeNode.NodeStructure.ParentStructureTransform = MoleculeTransform;
+        mainNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
+        mainNode.NodeStructure.ParentStructureTransform = MoleculeTransform;
         CreateChainAlkane(carbonNumber);
     }
 
@@ -22,7 +22,7 @@ public class Alkane : OrganicMolecule
         {
             throw new System.Exception("Allowed Alkane Chain Num Exceeded");
         }
-        MoleculeNode currentNode = rootTreeNode;
+        MoleculeNode currentNode = mainNode;
         while(carbonNum > 1)
         {
             MoleculeNode adjNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
@@ -38,19 +38,20 @@ public class Alkane : OrganicMolecule
 
     public void ArrangeConformations()
     {
-        //if (_carbonNumber == 2)
-        //{
-            
-        //    foreach (MoleculeNode adj in rootTreeNode.GetAllAdjacent())
-        //    {
-        //        if (adj.IsAtomNode<CarbonAtom>())
-        //        {
-        //            RotationAroundAxis rax = ConformationUtil.StaggerRotation(rootTreeNode, adj);
-        //            adj.RotateWithChildren(rax);
+        if (_carbonNumber == 2)
+        {
 
-        //        }
-        //    }
-        //}
+            foreach (List<int> bondList in mainNode.Adjecents.Keys)
+            {
+                MoleculeNode adj = mainNode.Adjecents[bondList];
+                if (adj.IsAtomNode<CarbonAtom>())
+                {
+                    RotationAroundAxis rax = ConformationUtil.StaggerRotation(mainNode, adj, bondList);
+                    adj.RotateWithChildren(rax, bondList[1]);
+                }
+                
+            }
+        }
     }
 
-}
+    }

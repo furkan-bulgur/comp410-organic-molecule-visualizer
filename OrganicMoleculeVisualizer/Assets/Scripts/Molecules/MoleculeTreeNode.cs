@@ -10,6 +10,10 @@ public class MoleculeNode
     }
     
     private Dictionary<List<int>,MoleculeNode> _adjacentStructures = new Dictionary<List<int>, MoleculeNode>();
+    public Dictionary<List<int>, MoleculeNode> Adjecents
+    {
+        get { return _adjacentStructures; }
+    }
 
     public void AddAdjecent(int bondToAdj, int bondAdjtoThis, MoleculeNode node)
     {
@@ -158,14 +162,50 @@ public class MoleculeNode
 
     }
 
-    public void RotateWithChildren(RotationAroundAxis rax)
+    //public void RotateWithChildren(RotationAroundAxis rax)
+    //{
+    //    Debug.Log("Main");
+    //    rax.RotateTransform(NodeStructure.Transform);
+    //    foreach (List<int> bondList in Adjecents.Keys)
+    //    {
+    //        Debug.Log("main " + bondList[0]);
+    //        Debug.Log("main " + bondList[1]);
+    //        MoleculeNode adj = Adjecents[bondList];
+    //        adj.RotateWithChildrenHelper(rax, bondList[1]);
+    //    }
+    //}
+    public void RotateWithChildren(RotationAroundAxis rax, int prevBond)
     {
         rax.RotateTransform(NodeStructure.Transform);
-        foreach(MoleculeNode child in GetAllAdjacent())
+        foreach (List<int> bondList in Adjecents.Keys)
         {
-            child.RotateWithChildren(rax);
+            if (bondList[0] != prevBond)
+            {
+                Debug.Log(bondList[0]);
+                Debug.Log(bondList[1]);
+                MoleculeNode adj = Adjecents[bondList];
+                adj.RotateWithChildren(rax, bondList[1]);
+            }
+
         }
     }
+
+    //private void RotateWithChildrenHelper(RotationAroundAxis rax, int prevBond)
+    //{
+    //    Debug.Log("Helper");
+    //    rax.RotateTransform(NodeStructure.Transform);
+    //    foreach (List<int> bondList in Adjecents.Keys)
+    //    {
+    //        if(bondList[0] != prevBond)
+    //        {
+    //            Debug.Log(bondList[0]);
+    //            Debug.Log(bondList[1]);
+    //            MoleculeNode adj = Adjecents[bondList];
+    //            adj.RotateWithChildrenHelper(rax, bondList[1]);
+    //        }
+            
+    //    }
+    //}
 
 
 }
