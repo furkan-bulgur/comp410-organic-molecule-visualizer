@@ -1,2 +1,0 @@
-/Users/furkanbulgur/Desktop/Courses/Spring 22/Comp 410/comp410-organic-molecule-visualizer/OrganicMoleculeVisualizer/obj/Debug/Assembly-CSharp.csproj.AssemblyReference.cache
-/Users/furkanbulgur/Desktop/Courses/Spring 22/Comp 410/comp410-organic-molecule-visualizer/OrganicMoleculeVisualizer/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
