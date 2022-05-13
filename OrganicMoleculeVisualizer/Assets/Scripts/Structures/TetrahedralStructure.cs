@@ -12,7 +12,7 @@ public class TetrahedralStructure : Structure
     public override void BindBond(int bondNum)
     {
         BondFactory bondFactory = new BondFactory();
-        Bond bond = bondFactory.CreateSingleBond(this.Atom, AppConstants.TetrahedralBondDefaultDirections[bondNum]);
+        Bond bond = bondFactory.CreateSingleBondWithName(this.Atom, AppConstants.TetrahedralBondDefaultDirections[bondNum], bondNum);
         bond.ParentStructureTransform = _structure.transform;
         bonds[bondNum] = bond;
     }

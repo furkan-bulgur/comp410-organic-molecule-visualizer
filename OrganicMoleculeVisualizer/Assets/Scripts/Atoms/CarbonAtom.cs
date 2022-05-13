@@ -12,6 +12,7 @@ public class CarbonAtom : Atom
      */
     public CarbonAtom() : base(AppConstants.CarbonAtomScale)
     {
+        Name = "Carbon";
     }
 
 }

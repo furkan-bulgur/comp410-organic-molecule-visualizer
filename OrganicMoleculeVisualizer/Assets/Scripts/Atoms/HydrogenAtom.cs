@@ -12,5 +12,6 @@ public class HydrogenAtom : Atom
      */
     public HydrogenAtom() : base(AppConstants.HydrogenAtomScale)
     {
+        Name = "Hydrogen";
     }
 }

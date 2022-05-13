@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Alkane : OrganicMolecule
 {
+    private int conformationCalcDepth = 0;
     private StructureFactory structureFactory = new StructureFactory();
     int _carbonNumber;
     public Alkane(int carbonNumber) : base()
@@ -32,26 +33,29 @@ public class Alkane : OrganicMolecule
         }
 
         PopulateWithHydrogen();
-        ArrangeConformations();
+        ArrangeConformations(mainNode);
 
     }
 
-    public void ArrangeConformations()
+    public void ArrangeConformations(MoleculeNode node, int prevBond = -1)
     {
-        if (_carbonNumber == 2)
+        conformationCalcDepth += 1;
+        if(conformationCalcDepth > 2)
         {
-
-            foreach (List<int> bondList in mainNode.Adjecents.Keys)
-            {
-                MoleculeNode adj = mainNode.Adjecents[bondList];
-                if (adj.IsAtomNode<CarbonAtom>())
-                {
-                    RotationAroundAxis rax = ConformationUtil.StaggerRotation(mainNode, adj, bondList);
-                    adj.RotateWithChildren(rax, bondList[1]);
-                }
-                
-            }
+            return;
         }
+        foreach (List<int> bondList in node.Adjecents.Keys)
+        {
+            MoleculeNode adj = node.Adjecents[bondList];
+            if (adj.IsAtomNode<CarbonAtom>() && bondList[0] != prevBond)
+            {
+                RotationAroundAxis rax = ConformationUtil.StaggerRotation(node, adj, bondList);
+                adj.RotateWithChildren(rax, bondList[1]);
+                ArrangeConformations(adj, bondList[1]);
+            }
+                
+        }
+        
     }
 
-    }
+}

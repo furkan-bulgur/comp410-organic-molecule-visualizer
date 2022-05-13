@@ -59,6 +59,12 @@ public abstract class Atom
         set { _sphere.transform.parent = value; }
     }
 
+    public string Name
+    {
+        get { return _sphere.name; }
+        set { _sphere.name = value; }
+    }
+
     public float Radius
     {
         // Multiplying with scale to get actual radius because scale is uniform

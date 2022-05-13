@@ -16,10 +16,11 @@ public class BondFactory
     {
         return new SingleBond();
     }
-    public SingleBond CreateSingleBond(Atom atom, Vector3 direction)
+    public SingleBond CreateSingleBondWithName(Atom atom, Vector3 direction, int bondNum)
     {
         SingleBond singleBond = new SingleBond(atom, direction);
         singleBond.Material = atom.Material;
+        singleBond.Name = "Single Bond " + bondNum;
         return singleBond;
     }
 }

@@ -37,6 +37,12 @@ public abstract class Structure
         set { _structure.transform.parent = value; }
     }
 
+    public string Name
+    {
+        get { return _structure.name; }
+        set { _structure.name = value; }
+    }
+
     public Structure(Atom atom)
     {
         _structure = new GameObject("Structure");

@@ -12,7 +12,7 @@ public class SingleBondStructure : Structure
     public override void BindBond(int bondNum)
     {
         BondFactory bondFactory = new BondFactory();
-        Bond bond = bondFactory.CreateSingleBond(this.Atom, AppConstants.SingleBondDefaultDirections[bondNum]);
+        Bond bond = bondFactory.CreateSingleBondWithName(this.Atom, AppConstants.SingleBondDefaultDirections[bondNum], bondNum);
         bond.ParentStructureTransform = _structure.transform;
         bonds[bondNum] = bond;
     }

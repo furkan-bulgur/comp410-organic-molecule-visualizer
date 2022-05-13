@@ -162,18 +162,7 @@ public class MoleculeNode
 
     }
 
-    //public void RotateWithChildren(RotationAroundAxis rax)
-    //{
-    //    Debug.Log("Main");
-    //    rax.RotateTransform(NodeStructure.Transform);
-    //    foreach (List<int> bondList in Adjecents.Keys)
-    //    {
-    //        Debug.Log("main " + bondList[0]);
-    //        Debug.Log("main " + bondList[1]);
-    //        MoleculeNode adj = Adjecents[bondList];
-    //        adj.RotateWithChildrenHelper(rax, bondList[1]);
-    //    }
-    //}
+  
     public void RotateWithChildren(RotationAroundAxis rax, int prevBond)
     {
         rax.RotateTransform(NodeStructure.Transform);
@@ -181,8 +170,6 @@ public class MoleculeNode
         {
             if (bondList[0] != prevBond)
             {
-                Debug.Log(bondList[0]);
-                Debug.Log(bondList[1]);
                 MoleculeNode adj = Adjecents[bondList];
                 adj.RotateWithChildren(rax, bondList[1]);
             }
@@ -190,22 +177,7 @@ public class MoleculeNode
         }
     }
 
-    //private void RotateWithChildrenHelper(RotationAroundAxis rax, int prevBond)
-    //{
-    //    Debug.Log("Helper");
-    //    rax.RotateTransform(NodeStructure.Transform);
-    //    foreach (List<int> bondList in Adjecents.Keys)
-    //    {
-    //        if(bondList[0] != prevBond)
-    //        {
-    //            Debug.Log(bondList[0]);
-    //            Debug.Log(bondList[1]);
-    //            MoleculeNode adj = Adjecents[bondList];
-    //            adj.RotateWithChildrenHelper(rax, bondList[1]);
-    //        }
-            
-    //    }
-    //}
+   
 
 
 }

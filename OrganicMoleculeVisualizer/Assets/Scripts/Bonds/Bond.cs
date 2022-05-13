@@ -70,6 +70,12 @@ public abstract class Bond
         set { _cylinder.transform.parent = value; }
     }
 
+    public string Name
+    {
+        get { return _cylinder.name; }
+        set { _cylinder.name = value; }
+    }
+
     private Bond()
     {
         _cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);

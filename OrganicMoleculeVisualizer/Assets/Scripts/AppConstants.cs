@@ -39,4 +39,7 @@ public static class AppConstants
 
     public static int AllowedAlkaneChainMaxCarbonNum = 6;
 
+
+    public static float MethylMethylDistanceFactor = 2f;
+
 }
