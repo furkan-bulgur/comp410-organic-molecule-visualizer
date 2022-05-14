@@ -16,48 +16,87 @@ public class ConformationUtil
         sideBonds.Remove(sideToMainBond);
 
         Vector3 bondDirection = main.NodeStructure.GetBondDirection(mainToSideBond);
-        float resultAngle = 0;
-        float currentMaxDistance = 0;
-        for (int i = 0; i < 360; i += AngleIncrement)
+
+        List<int> mainCarbonBonds = main.GetAllAdjecentBondNumsWithAtomWithout<CarbonAtom>(bondList[0]);
+        List<int> sideCarbonBonds = side.GetAllAdjecentBondNumsWithAtomWithout<CarbonAtom>(bondList[1]);
+
+        Debug.Log(mainCarbonBonds.Count);
+        Debug.Log(sideCarbonBonds.Count);
+
+        if ((mainCarbonBonds.Count == 1 && sideCarbonBonds.Count == 1) ||
+           (mainCarbonBonds.Count == 1 && sideCarbonBonds.Count == 2) ||
+           (mainCarbonBonds.Count == 2 && sideCarbonBonds.Count == 1))
         {
-            Quaternion currentRotation = Quaternion.AngleAxis(i, bondDirection);
-            float factoredDistance = 0f;
-            foreach(int mainBond in mainBonds)
-            {
-                foreach(int sideBond in sideBonds)
-                {
-                    factoredDistance += GetModifiedDistance(main, side, mainBond, sideBond);
-                }
-            }
-            Debug.Log(factoredDistance);
-            if (factoredDistance >= currentMaxDistance)
-            {
-                currentMaxDistance = factoredDistance;
-                resultAngle = i;
-            }
+            Debug.Log("Whatfuck");
+            Vector3 mainDirection = main.NodeStructure.GetBondDirection(mainCarbonBonds[0]);
+            Vector3 sideDirection = side.NodeStructure.GetBondDirection(sideCarbonBonds[0]);
+            Vector3 mainProj = Vector3.ProjectOnPlane(mainDirection, bondDirection);
+            Vector3 sideProj = Vector3.ProjectOnPlane(sideDirection, bondDirection);
+            return new RotationAroundAxis(main.NodeStructure.Position, Vector3.Angle(mainProj, sideProj) + 180, bondDirection.normalized);
+
         }
-        
-        return new RotationAroundAxis(main.NodeStructure.Position, resultAngle, bondDirection.normalized);
-        //return null;
-
-
-    }
-
-    public static float GetModifiedDistance(MoleculeNode main, MoleculeNode side, int mainBond, int sideBond)
-    {
-        Vector3 mainDirection = main.NodeStructure.GetBondDirection(mainBond);
-        Vector3 sideDirection = side.NodeStructure.GetBondDirection(sideBond);
-        Vector3 diff = mainDirection - sideDirection;
-        if(main.GetAdjacent(mainBond).IsAtomNode<CarbonAtom>() &&
-            side.GetAdjacent(sideBond).IsAtomNode<CarbonAtom>())
+        else if (mainCarbonBonds.Count == 2 && sideCarbonBonds.Count == 2)
         {
-            return AppConstants.MethylMethylDistanceFactor * diff.magnitude;
+            Debug.Log("This");
+            Vector3 mainDirection = main.NodeStructure.GetBondDirection(mainCarbonBonds[0]) + main.NodeStructure.GetBondDirection(mainCarbonBonds[1]);
+            Vector3 sideDirection = side.NodeStructure.GetBondDirection(sideCarbonBonds[0]) + side.NodeStructure.GetBondDirection(sideCarbonBonds[1]);
+            Vector3 mainProj = Vector3.ProjectOnPlane(mainDirection, bondDirection);
+            Vector3 sideProj = Vector3.ProjectOnPlane(sideDirection, bondDirection);
+            return new RotationAroundAxis(main.NodeStructure.Position, Vector3.Angle(mainProj, sideProj) + 180, bondDirection.normalized);
         }
         else
         {
-            return diff.magnitude;
+            Debug.Log("Here");
+            return new RotationAroundAxis(main.NodeStructure.Position, 60, bondDirection.normalized);
         }
+
     }
+
+    //public static float GetModifiedDistance(MoleculeNode main, MoleculeNode side, int mainBond, int sideBond)
+    //{
+    //    Vector3 mainDirection = main.NodeStructure.GetBondDirection(mainBond);
+    //    Vector3 sideDirection = side.NodeStructure.GetBondDirection(sideBond);
+    //    Vector3 diff = mainDirection - sideDirection;
+    //    if(main.GetAdjacent(mainBond).IsAtomNode<CarbonAtom>() &&
+    //        side.GetAdjacent(sideBond).IsAtomNode<CarbonAtom>())
+    //    {
+    //        return AppConstants.MethylMethylDistanceFactor * diff.magnitude;
+    //    }
+    //    else
+    //    {
+    //        return diff.magnitude;
+    //    }
+    //}
+
+    //public static float GetModifiedAngle(MoleculeNode main, MoleculeNode side, int mainBond, int sideBond, Vector3 planeNormal)
+    //{
+    //    Vector3 normal = planeNormal.normalized;
+    //    Vector3 mainDirection = main.NodeStructure.GetBondDirection(mainBond);
+    //    Vector3 sideDirection = side.NodeStructure.GetBondDirection(sideBond);
+    //    Vector3 mainProj = Vector3.ProjectOnPlane(mainDirection, normal);
+    //    Vector3 sideProj = Vector3.ProjectOnPlane(sideDirection, normal);
+    //    if (main.GetAdjacent(mainBond).IsAtomNode<CarbonAtom>() &&
+    //        side.GetAdjacent(sideBond).IsAtomNode<CarbonAtom>())
+    //    {
+    //        return AppConstants.MethylMethylDistanceFactor * Vector3.Angle(mainProj, sideProj);
+    //    }
+    //    else
+    //    {
+    //        return Vector3.Angle(mainProj, sideProj);
+    //    }
+    //}
+
+    //public static float DivisionByOneWithZeroTolerance(float num)
+    //{
+    //    if (num == 0)
+    //    {
+    //        return AppConstants.DivisionByZeroDefaultValue;
+    //    }
+    //    else
+    //    {
+    //        return 1f / num;
+    //    }
+    //}
     
 }
 

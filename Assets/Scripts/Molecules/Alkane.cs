@@ -52,8 +52,6 @@ public class Alkane : OrganicMolecule
             if (adj.IsAtomNode<CarbonAtom>() && bondList[0] != prevBond)
             {
                 RotationAroundAxis rax = ConformationUtil.StaggerRotation(node, adj, bondList);
-                Debug.Log(adj.NodeStructure.Name);
-                Debug.Log(rax);
                 adj.RotateWithChildren(rax, bondList[1]);
                 ArrangeConformations(adj, bondList[1]);
             }

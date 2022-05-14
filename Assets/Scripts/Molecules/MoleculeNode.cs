@@ -65,6 +65,29 @@ public class MoleculeNode
         return adjs;
     }
 
+    public List<MoleculeNode> GetAllAdjecentWithAtom<A>() where A : Atom
+    {
+        List<MoleculeNode> adjs = new List<MoleculeNode>();
+        foreach (MoleculeNode node in _adjacentStructures.Values)
+        {
+            if(node.IsAtomNode<A>()) adjs.Add(node);
+        }
+        return adjs;
+    }
+
+    public List<int> GetAllAdjecentBondNumsWithAtomWithout<A>(int i) where A : Atom
+    {
+        List<int> nums = new List<int>();
+        foreach (List<int> bondList in _adjacentStructures.Keys)
+        {
+            if (_adjacentStructures[bondList].IsAtomNode<A>() && bondList[0] != i)
+            {
+                nums.Add(bondList[0]);
+            }
+        }
+        return nums;
+    }
+
     public List<MoleculeNode> GetAllAdjacentWithout(int i)
     {
         List<MoleculeNode> adjs = new List<MoleculeNode>();
@@ -171,7 +194,6 @@ public class MoleculeNode
             if (bondList[0] != prevBond)
             {
                 MoleculeNode adj = Adjecents[bondList];
-                Debug.Log(adj.NodeStructure.Name + " is rotated by " + rax.ToString());
                 adj.RotateWithChildren(rax, bondList[1]);
             }
 

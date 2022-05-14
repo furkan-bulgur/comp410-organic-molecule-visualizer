@@ -41,5 +41,6 @@ public static class AppConstants
 
 
     public static float MethylMethylDistanceFactor = 2f;
+    public static float DivisionByZeroDefaultValue = 1f;
 
 }

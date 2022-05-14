@@ -21,7 +21,7 @@ public class Main : MonoBehaviour
         set
         {
             _currentMolecule = value;
-            //if(_currentMolecule != null) AlignMolecule(_currentMolecule);
+            if(_currentMolecule != null) AlignMolecule(_currentMolecule);
         }
     }
 
