@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using TMPro;
 
 public class Main : MonoBehaviour
 {
-    [SerializeField] public InputField nameInput;
-    [SerializeField] public Text infoText;
+    [SerializeField] public TMP_InputField moleculeInput;
+    [SerializeField] public TMP_Text infoText;
     [SerializeField] public AtomFactory atomFactory;
     [SerializeField] public GameObject temp;
     [SerializeField] public float rotationSpeed = 20;
@@ -36,7 +37,7 @@ public class Main : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            nameParser.parseAndCreate(nameInput.text);
+            nameParser.parseAndCreate(moleculeInput.text);
         }
         if(Input.GetMouseButton(0) && CurrentMolecule != null)
         {
