@@ -44,6 +44,11 @@ public class AlkaneParser
             _nameParser.setName("Hexane");
             return new Alkane(6);
         }
+        else if (name.Equals("testane"))
+        {
+            _nameParser.setName("Test");
+            return new Alkane(3, new Dictionary<int, int>{ {2,1} });
+        }
         else
         {
             _nameParser.setName("Invalid Name");
