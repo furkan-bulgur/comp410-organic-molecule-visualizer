@@ -18,8 +18,8 @@ public class Alkane : OrganicMolecule
         {
             foreach(int key in branches.Keys)
             {
-                MoleculeNode topOfBranch = CreateChainAlkane(branches[key], MoleculeTransform)[1];
-                mainChainDict[key].BindNodeToEmpty(topOfBranch, 1);
+                CreateBranchAlkane(branches[key], mainChainDict[key], MoleculeTransform);
+                
             }
         }
         mainNode = mainChainDict[1];
@@ -31,10 +31,6 @@ public class Alkane : OrganicMolecule
     public Dictionary<int, MoleculeNode> CreateChainAlkane(int carbonNum, Transform parentStructureTransform)
     {
         Dictionary<int, MoleculeNode> result = new Dictionary<int, MoleculeNode>();
-        if (carbonNum > AppConstants.AllowedAlkaneChainMaxCarbonNum)
-        {
-            throw new System.Exception("Allowed Alkane Chain Num Exceeded");
-        }
         int counter = 1;
         MoleculeNode firstNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
         firstNode.NodeStructure.ParentStructureTransform = parentStructureTransform;
@@ -52,6 +48,30 @@ public class Alkane : OrganicMolecule
         }
 
         return result;       
+
+    }
+
+    public Dictionary<int, MoleculeNode> CreateBranchAlkane(int carbonNum, MoleculeNode mainNode, Transform parentStructureTransform)
+    {
+        Dictionary<int, MoleculeNode> result = new Dictionary<int, MoleculeNode>();
+        int counter = 1;
+        MoleculeNode firstNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
+        firstNode.NodeStructure.ParentStructureTransform = parentStructureTransform;
+        mainNode.BindNodeToEmpty(firstNode, 1);
+        result[counter] = firstNode;
+
+        MoleculeNode currentNode = firstNode;
+        while (carbonNum > 1)
+        {
+            MoleculeNode adjNode = new MoleculeNode(structureFactory.CreateTetrahedralStructure<CarbonAtom>());
+            currentNode.BindNode(adjNode, 2, 1);
+            counter++;
+            result[counter] = adjNode;
+            currentNode = adjNode;
+            carbonNum--;
+        }
+
+        return result;
 
     }
 

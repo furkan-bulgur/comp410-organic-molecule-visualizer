@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System;
 using UnityEngine;
 
 public class AlkaneParser 
@@ -13,43 +14,32 @@ public class AlkaneParser
 
     public Molecule parse(string name)
     {
-        name = Regex.Replace(name.ToLower(), @"\s", "");
-        if (name.Equals("methane"))
+        try
         {
-            _nameParser.setName("Methane");
-            return new Alkane(1);
+            name = Regex.Replace(name.ToLower(), @"\s", "");
+            foreach (string mainChainName in AppConstants.AlkaneNaming.Keys)
+            {
+                if (name.EndsWith(mainChainName))
+                {
+                    int mainBranchCarbonNum = AppConstants.AlkaneNaming[mainChainName];
+                    Dictionary<int, int> branches = new Dictionary<int, int>();
+                    var prename = Regex.Replace(name.Replace(mainChainName, ""), @"\s", "");
+                    if (prename != "")
+                    {
+                        string[] splitedPrename = prename.Split("-");
+                        if (AppConstants.AlkaneBranchNaming.ContainsKey(splitedPrename[1]))
+                        {
+                            branches[int.Parse(splitedPrename[0])] = AppConstants.AlkaneBranchNaming[splitedPrename[1]];
+                        }
+                    }
+                    _nameParser.setName(name);
+                    return new Alkane(mainBranchCarbonNum, branches);
+                }
+            }
+            throw new Exception();
+
         }
-        else if (name.Equals("ethane"))
-        {
-            _nameParser.setName("Ethane");
-            return new Alkane(2);
-        }
-        else if (name.Equals("propane"))
-        {
-            _nameParser.setName("Propane");
-            return new Alkane(3);
-        }
-        else if (name.Equals("butane"))
-        {
-            _nameParser.setName("Butane");
-            return new Alkane(4);
-        }
-        else if (name.Equals("pentane"))
-        {
-            _nameParser.setName("Pentane");
-            return new Alkane(5);
-        }
-        else if (name.Equals("hexane"))
-        {
-            _nameParser.setName("Hexane");
-            return new Alkane(6);
-        }
-        else if (name.Equals("testane"))
-        {
-            _nameParser.setName("Test");
-            return new Alkane(3, new Dictionary<int, int>{ {2,1} });
-        }
-        else
+        catch(Exception e)
         {
             _nameParser.setName("Invalid Name");
             return null;
