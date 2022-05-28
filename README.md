@@ -1,7 +1,7 @@
 # comp410-organic-molecule-visualizer
 ## Molecules 
 
-**bold one are not included into parser yet**
+**bold one are not included into parser yet** 
 ~~stroked ones are not shown in correct conformation~~
 
 Methane
