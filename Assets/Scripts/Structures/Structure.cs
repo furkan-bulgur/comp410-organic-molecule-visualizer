@@ -102,4 +102,12 @@ public abstract class Structure
         Quaternion neededRotation = Quaternion.FromToRotation(initialDirection, direction);
         Rotation *= neededRotation;
     }
+
+    public void PrintBondDirections()
+    {
+        Debug.Log($"Name:{Name}");
+        foreach(int bondNum in bonds.Keys){
+            Debug.Log($"BondName:{bonds[bondNum].Name} Direction{GetBondDirection(bondNum)}");
+        }
+    }
 }
