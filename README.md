@@ -4,26 +4,20 @@
 **bold one are not included into parser yet** 
 ~~stroked ones are not shown in correct conformation~~
 
-Methane
-
-Ethane
-
-Propane
-
-Butane 
+* Methane
+* Ethane
+* Propane
+* Butane 
 * 2-Methylpropane
-
-Pentane 
+* Pentane 
 * 2-Methylbutane 
 * **2,2-Dimethylpropane**
-
-Hexane 
+* Hexane 
 * 2-Methylpentane 
 * 3-Methylpentane 
 * **2,3-Dimethylbutane**
 * **2,2 Dimethylbutane**
-
-Heptane 
+* Heptane 
 * 2-Methylhexane 
 * 3-Methyhexane 
 * ~~3-Ethylpentane~~
@@ -32,8 +26,7 @@ Heptane
 * **2,4-Dimethylpentane**
 * **3,3-Dimethylpentane**
 * **2,2,3-Trimethylbutane**
-
-Octane 
+* Octane 
 * 2-Methylheptane
 * 3-Methylheptane
 * 4-Methylheptane
