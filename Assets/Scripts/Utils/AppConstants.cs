@@ -52,13 +52,21 @@ public static class AppConstants
         {"pentane", 5},
         {"hexane", 6},
         {"heptane", 7},
+        {"octane", 8},
+        {"nonane", 9},
 
     };
     public static Dictionary<string, int> AlkaneBranchNaming = new Dictionary<string, int>
     {
         {"methyl", 1},
         {"ethyl", 2},
-        {"propyl", 3},
+    };
+
+    public static Dictionary<string, int> AlkaneBranchCountNaming = new Dictionary<string, int>
+    {
+        {"di", 2},
+        {"tri", 3},
+        {"tetra", 4},
     };
 
 }

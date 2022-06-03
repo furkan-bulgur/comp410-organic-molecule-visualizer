@@ -7,7 +7,7 @@ public class Alkane : OrganicMolecule
     private int conformationCalcDepth = 0;
     private StructureFactory structureFactory = new StructureFactory();
     int _carbonNumber;
-    public Alkane(int carbonNumber, Dictionary<int,int> branches = null) : base()
+    public Alkane(int carbonNumber, Dictionary<int,List<int>> branches = null) : base()
     {
         _carbonNumber = carbonNumber;
 
@@ -18,7 +18,10 @@ public class Alkane : OrganicMolecule
         {
             foreach(int key in branches.Keys)
             {
-                CreateBranchAlkane(branches[key], mainChainDict[key], MoleculeTransform);
+                foreach(int num in branches[key])
+                {
+                    CreateBranchAlkane(num, mainChainDict[key], MoleculeTransform);
+                }
                 
             }
         }
