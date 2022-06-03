@@ -35,6 +35,24 @@ public class Molecule
         mainNode.NodeStructure.ParentStructureTransform = MoleculeTransform;
     }
 
+    public void PrintBondDirections(MoleculeNode node = null, int prevBond = -1)
+    {
+
+        if(node == null)
+        {
+            node = mainNode;
+        }
+        node.NodeStructure.PrintBondDirections();
+        foreach (List<int> bondList in node.Adjecents.Keys)
+        {
+            MoleculeNode adj = node.Adjecents[bondList];
+            if (bondList[0] != prevBond)
+            {
+                PrintBondDirections(adj, bondList[1]);
+            }
+
+        }
+    }
     
 
 }

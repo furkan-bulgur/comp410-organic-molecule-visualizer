@@ -185,6 +185,22 @@ public class MoleculeNode
 
     }
 
+    public bool BindNodeToEmpty(MoleculeNode adjNode, int adjToThisBond)
+    {
+        List<int> unbindedBonds = GetUnbindedBondNums();
+        if (unbindedBonds.Count != 0)
+        {
+            int thisToAdjBond = unbindedBonds[0];
+            BindNode(adjNode, thisToAdjBond, adjToThisBond);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
   
     public void RotateWithChildren(RotationAroundAxis rax, int prevBond)
     {
