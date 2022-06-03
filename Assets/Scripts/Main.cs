@@ -8,7 +8,9 @@ using TMPro;
 public class Main : MonoBehaviour
 {
     [SerializeField] public TMP_InputField moleculeInput;
+    [SerializeField] public TMP_Dropdown dropdown_menu;
     [SerializeField] public TMP_Text infoText;
+    [SerializeField] public Button spawn_button;
     [SerializeField] public AtomFactory atomFactory;
     [SerializeField] public GameObject temp;
     [SerializeField] public float rotationSpeed = 20;
@@ -29,7 +31,8 @@ public class Main : MonoBehaviour
     private NameParser nameParser;
     void Start()
     {
-        nameParser = new NameParser(this,atomFactory); 
+        nameParser = new NameParser(this,atomFactory);
+        spawn_button.onClick.AddListener(SpawnButtonAction);
     }
 
     // Update is called once per frame
@@ -48,6 +51,14 @@ public class Main : MonoBehaviour
             Vector3 up = Vector3.Cross(CurrentMolecule.Position - cam.transform.position, right);
             CurrentMolecule.Rotation = Quaternion.AngleAxis(-rotX, up) * CurrentMolecule.Rotation;
             CurrentMolecule.Rotation = Quaternion.AngleAxis(rotY, right) * CurrentMolecule.Rotation;
+        }
+    }
+
+    public void SpawnButtonAction()
+    {
+        if (dropdown_menu.captionText.text != "Select an alkane")
+        {
+            nameParser.parseAndCreate(dropdown_menu.captionText.text);
         }
     }
 

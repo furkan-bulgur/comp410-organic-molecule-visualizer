@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class InfoPanelFiller : MonoBehaviour
 {
@@ -13,12 +14,16 @@ public class InfoPanelFiller : MonoBehaviour
     [SerializeField] public TMP_Text explantion;
     [SerializeField] public TextAsset jsonFile;
 
+    [SerializeField] public TMP_Dropdown dropdown_menu;
+    [SerializeField] public Button spawn_button;
+
     private string mol_name;
     private Alkane_UI wanted_mol;
     private Alkanes_UI alkanesInJson;
     void Start()
     {
         alkanesInJson = JsonUtility.FromJson<Alkanes_UI>(jsonFile.text);
+        spawn_button.onClick.AddListener(SpawnButtonAction);
     }
 
     // Update is called once per frame
@@ -44,6 +49,32 @@ public class InfoPanelFiller : MonoBehaviour
             molecular_formula.text = "Molecular Formula: " + wanted_mol.molecular_formula.ToUpper();
             molecular_weight.text = "Molecular Weight: " + wanted_mol.molecular_weight;
             explantion.text = wanted_mol.explanation;
+        }
+    }
+
+    public void SpawnButtonAction()
+    {
+        if (dropdown_menu.captionText.text != "Select an alkane")
+        {
+            mol_name = dropdown_menu.captionText.text.ToLower();
+            Debug.Log("Molecule name: " + mol_name);
+
+            foreach (Alkane_UI alkane in alkanesInJson.alkanes)
+            {
+                if (alkane.name == mol_name)
+                {
+                    wanted_mol = alkane;
+                }
+            }
+            Debug.Log("Found alkane: " + wanted_mol.name + " " + wanted_mol.pubchemCID + " " + wanted_mol.molecular_formula + " "
+            + wanted_mol.molecular_weight + " " + wanted_mol.explanation);
+
+            molecule_name.text = "Molecule Name: " + wanted_mol.name.ToUpper();
+            pubchemCID.text = "PubChem CID: " + wanted_mol.pubchemCID;
+            molecular_formula.text = "Molecular Formula: " + wanted_mol.molecular_formula.ToUpper();
+            molecular_weight.text = "Molecular Weight: " + wanted_mol.molecular_weight;
+            explantion.text = wanted_mol.explanation;
+
         }
     }
 }
