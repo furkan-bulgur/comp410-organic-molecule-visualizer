@@ -11,6 +11,7 @@ public class Main : MonoBehaviour
     [SerializeField] public TMP_Dropdown dropdown_menu;
     [SerializeField] public TMP_Text infoText;
     [SerializeField] public Button spawn_button;
+    [SerializeField] public Slider size_slider;
     [SerializeField] public AtomFactory atomFactory;
     [SerializeField] public GameObject temp;
     [SerializeField] public float rotationSpeed = 20;
@@ -38,6 +39,10 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CurrentMolecule != null)
+        {
+            CurrentMolecule.MoleculeTransform.gameObject.transform.localScale = new Vector3(size_slider.value, size_slider.value, size_slider.value);
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             nameParser.parseAndCreate(moleculeInput.text);
