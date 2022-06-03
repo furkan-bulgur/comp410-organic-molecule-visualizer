@@ -78,4 +78,4 @@
 * ~~2,2-Dimethyl-3-ethylpentane~~
 * ~~2,3-Dimethyl-3-ethylpentane~~
 * ~~2,4-Dimethyl-3-ethylpentane~~
-* ~~*3,3-Diethylpentane~~
+* ~~3,3-Diethylpentane~~
