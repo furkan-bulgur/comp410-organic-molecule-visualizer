@@ -1,0 +1,531 @@
+{
+  "molecules": {
+    "alkanes": [
+      {
+        "name": "methane",
+        "pubchemCID": "297",
+        "molecular_formula": "CH4",
+        "molecular_weight": "16.043",
+        "explanation": "Methane is a colorless odorless gas. It is also known as marsh gas or methyl hydride. It is easily ignited. The vapors are lighter than air. Under prolonged exposure to fire or intense heat the containers may rupture violently and rocket. It is used in making other chemicals and as a constituent of the fuel, natural gas."
+      },
+      {
+        "name": "ethane",
+        "pubchemCID": "6324",
+        "molecular_formula": "C2H6 or CH3CH3",
+        "molecular_weight": "30.07",
+        "explanation": "Ethane appears as a colorless odorless gas. It is easily ignited. The vapors are heavier than air. It can asphyxiate by the displacement of air. Under prolonged exposure to fire or intense heat the containers may rupture violently and rocket. Contact with the liquid may cause frostbite."
+      },
+      {
+        "name": "propane",
+        "pubchemCID": "6334",
+        "molecular_formula": "C3H8 or CH3CH2CH3",
+        "molecular_weight": "44.10",
+        "explanation": "Propane appears as a colorless gas with a faint petroleum-like odor. It is shipped as a liquefied gas under its vapor pressure. For transportation it may be stenched. Contact with the unconfined liquid can cause frostbite by evaporative cooling. Easily ignited. The vapors are heavier than air and a flame can flash back to the source of leak very easily. The leak may be either a liquid or vapor leak. The vapors can asphyxiate by the displacement of air. Under prolonged exposure to fire or heat the containers may rupture violently and rocket."
+      },
+      {
+        "name": "butane",
+        "pubchemCID": "7843",
+        "molecular_formula": "C4H10 or CH3CH2CH2CH3",
+        "molecular_weight": "58.12",
+        "explanation": "Butane is a colorless gas with a faint petroleum-like odor. For transportation it may be stenched. It is shipped as a liquefied gas under its vapor pressure. Contact with the liquid can cause frostbite. It is easily ignited. Its vapors are heavier than air. Any leak can be either liquid or vapor. Under prolonged exposure to fire or intense heat the containers may rupture violently and rocket. It is used as a fuel, an aerosol propellant, in cigarette lighters, and to make other chemicals."
+      },
+      {
+        "name": "2-methylpropane",
+        "pubchemCID": "6360",
+        "molecular_formula": "C4H10 or (CH3)2CH CH3 or (CH3)2CHCH3",
+        "molecular_weight": "58.12",
+        "explanation": "Isobutane is a colorless gas with a faint petroleum-like odor. It is shipped as a liquefied gas under its vapor pressure. Contact with the liquid can cause frostbite. It is easily ignited. The vapors are heavier than air. Any leak can either be liquid or vapor. It can asphyxiate by the displacement of air. Under prolonged exposure to fire or intense heat the containers may rupture violently and rocket."
+      },
+      {
+        "name": "pentane",
+        "pubchemCID": "8003",
+        "molecular_formula": "C5H12 or CH3(CH2)3CH3",
+        "molecular_weight": "72.15",
+        "explanation": "Pentane is a straight chain alkane consisting of 5 carbon atoms. It has a role as a non-polar solvent and a refrigerant. It is a volatile organic compound and an alkane."
+      },
+      {
+        "name": "2-methylbutane",
+        "pubchemCID": "6556",
+        "molecular_formula": "C5H12 or (CH3)2-CH-CH2-CH3",
+        "molecular_weight": "72.15",
+        "explanation": "Isopentane is an organic, branched-chain alkane with five carbon atoms."
+      },
+      {
+        "name": "2,2-dimethylpropane",
+        "pubchemCID": "10041",
+        "molecular_formula": "C5H12",
+        "molecular_weight": "72.15",
+        "explanation": "Neopentane is an alkane."
+      },
+      {
+        "name": "hexane",
+        "pubchemCID": "8058",
+        "molecular_formula": "C6H14",
+        "molecular_weight": "86.18",
+        "explanation": "n-Hexane is a chemical made from crude oil. Pure n-Hexane is a colorless liquid with a slightly disagreeable odor. It is highly flammable, and its vapors can be explosive. Puren-Hexane is used in laboratories. Most of then-Hexane used in industry is mixed with similar chemicals called solvents. The major use for solvents containing n-Hexane is to extract vegetable oils from crops such as soybeans. These solvents are also used as cleaning agents in the printing, textile, furniture, and shoemaking industries."
+      },
+      {
+        "name": "2-methylpentane",
+        "pubchemCID": "7892",
+        "molecular_formula": "C6H14 or CH3CH(CH3)(CH2)2CH3",
+        "molecular_weight": "86.18",
+        "explanation": "2-Methylpentane is an alkane. Methyl pentane appears as colorless liquid. Isomers (2-methyl, 3-methyl) are possible and present in technical mixtures or singly for research purposes. Used in organic synthesis and as a solvent."
+      },
+      {
+        "name": "3-methylpentane",
+        "pubchemCID": "7282",
+        "molecular_formula": "C6H14 or CH3CH2CH(CH3)CH2CH3",
+        "molecular_weight": "86.18",
+        "explanation": "3-methylpentane is an alkane that is pentane which is substituted by a methyl group at position 3. It is used as a solvent in organic synthesis, as a lubricant and as a raw material for producing carbon black. It has a role as a human metabolite, an allelochemical and a non-polar solvent. It is an alkane and a volatile organic compound."
+      },
+      {
+        "name": "2,3-dimethylbutane",
+        "pubchemCID": "6589",
+        "molecular_formula": "C6H14",
+        "molecular_weight": "86.18",
+        "explanation": "2,3-dimethylbutane appears as a clear colorless liquid with a petroleum-like odor. Flash point -20°F. Less dense than water and insoluble in water. Vapors heavier than air."
+      },
+      {
+        "name": "2,2-dimethylbutane",
+        "pubchemCID": "6403",
+        "molecular_formula": "C6H14",
+        "molecular_weight": "86.18",
+        "explanation": "Neohexane is a colorless liquid with an odor of gasoline. Less dense than water and insoluble in water. Hence floats on water. Irritating vapor. Flash point -54°F."
+      },
+      {
+        "name": "heptane",
+        "pubchemCID": "8900",
+        "molecular_formula": "C7H16 or CH3(CH2)5CH3",
+        "molecular_weight": "100.20",
+        "explanation": "Heptane is a straight-chain alkane with seven carbon atoms. It has been found in Jeffrey pine (Pinus jeffreyi). It has a role as a non-polar solvent and a plant metabolite. It is a volatile organic compound and an alkane."
+      },
+      {
+        "name": "2-methylhexane",
+        "pubchemCID": "11582",
+        "molecular_formula": "C7H16 or CH3CH(CH3)(CH2)3CH3",
+        "molecular_weight": "100.20",
+        "explanation": "2-methylhexane is an alkane."
+      },
+      {
+        "name": "3-methylhexane",
+        "pubchemCID": "11507",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "3-methylhexane is an alkane that is hexane substituted by a methyl group at position 3. It has a role as a human metabolite. It is an alkane and a volatile organic compound."
+      },
+      {
+        "name": "3-ethylpentane",
+        "pubchemCID": "12048",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "3-ethylpentane is an alkane that is pentane substituted by an ethyl group at position 3. It has a role as a bacterial metabolite and a human metabolite. It is an alkane and a volatile organic compound."
+      },
+      {
+        "name": "2,2-dimethylpentane",
+        "pubchemCID": "11542",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "2,2-dimethylpentane is an alkane."
+      },
+      {
+        "name": "2,3-dimethylpentane",
+        "pubchemCID": "11260",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "2,3-dimethylpentane is an alkane."
+      },
+      {
+        "name": "2,4-dimethylpentane",
+        "pubchemCID": "7907",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "2,4-dimethylpentane is an alkane."
+      },
+      {
+        "name": "3,3-dimethylpentane",
+        "pubchemCID": "11229",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "3,3-Dimethylpentane is a natural product found in Hypericum rumeliacum, Halocarpus bidwillii, and other organisms with data available."
+      },
+      {
+        "name": "2,2,3-trimethylbutane",
+        "pubchemCID": "10044",
+        "molecular_formula": "C7H16",
+        "molecular_weight": "100.20",
+        "explanation": "Decarboxylated monoamine derivatives of TRYPTOPHAN."
+      },
+      {
+        "name": "octane",
+        "pubchemCID": "356",
+        "molecular_formula": "C8H18 or CH3-(CH2)6-CH3",
+        "molecular_weight": "114.23",
+        "explanation": "Octane is a straight chain alkane composed of 8 carbon atoms. It has a role as a xenobiotic. N-octane is a colorless liquid with an odor of gasoline. Less dense than water and insoluble in water. Hence floats on water. Produces irritating vapor."
+      },
+      {
+        "name": "2-methylheptane",
+        "pubchemCID": "11594",
+        "molecular_formula": "C8H18 or CH3CH(CH3)CH2(CH2)3CH3",
+        "molecular_weight": "114.23",
+        "explanation": "2-Methylheptane is an alkane."
+      },
+      {
+        "name": "3-methylheptane",
+        "pubchemCID": "11519",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "3-Methylheptane is an alkane."
+      },
+      {
+        "name": "4-methylheptane",
+        "pubchemCID": "11512",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "4-methylheptane is a branched C8 alkane, comprising heptane with a methyl group attached at C-4. It has been found in Amaranth seeds. It has a role as a plant metabolite."
+      },
+      {
+        "name": "3-ethylhexane",
+        "pubchemCID": "12096",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "3-ethylhexane is an alkane."
+      },
+      {
+        "name": "2,2-dimethylhexane",
+        "pubchemCID": "11551",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,2-dimethylhexane is an alkane."
+      },
+      {
+        "name": "2,3-dimethylhexane",
+        "pubchemCID": "11447",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "Xi-2,3-Dimethylhexane is an alkane."
+      },
+      {
+        "name": "2,4-dimethylhexane",
+        "pubchemCID": "11511",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,4-dimethylhexane is an alkane that is hexane carrying a methyl group at positions 2 and 4. It has a role as a human metabolite. It is an alkane and a volatile organic compound. It derives from a hydride of a hexane."
+      },
+      {
+        "name": "2,5-dimethylhexane",
+        "pubchemCID": "11592",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,5-dimethylhexane is an alkane."
+      },
+      {
+        "name": "3,3-dimethylhexane",
+        "pubchemCID": "11233",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "3,3-dimethylhexane is an alkane that is hexane in which the two methylene hydrogens at position 3 have been replaced by methyl groups."
+      },
+      {
+        "name": "3,4-dimethylhexane",
+        "pubchemCID": "11412",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "3,4-dimethylhexane is an alkane."
+      },
+      {
+        "name": "3-ethyl-2-methylpentane",
+        "pubchemCID": "11863",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "3-ethyl-2-methylpentane is an alkane."
+      },
+      {
+        "name": "3-ethyl-3-methylpentane",
+        "pubchemCID": "14018",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "3-ethyl-3-methylpentane is an alkane."
+      },
+      {
+        "name": "2,2,3-trimethylpentane",
+        "pubchemCID": "11255",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,2,3-trimethylpentane is an alkane."
+      },
+      {
+        "name": "2,2,4-trimethylpentane",
+        "pubchemCID": "10907",
+        "molecular_formula": "C8H18 or CH3C(CH3)2CH2CH(CH3)2",
+        "molecular_weight": "114.23",
+        "explanation": "2,2,4-Trimethylpentane is released to the environment through the manufacture, use, and disposal of products associated with the petroleum and gasoline industry."
+      },
+      {
+        "name": "2,3,3-trimethylpentane",
+        "pubchemCID": "11215",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,3,3-trimethylpentane is a branched alkane that is pentane carrying one methyl group at positions 2, and two methyl groups at position 3. It has a role as a human metabolite, a bacterial metabolite and a mammalian metabolite. It is an alkane and a volatile organic compound."
+      },
+      {
+        "name": "2,3,4-trimethylpentane",
+        "pubchemCID": "11269",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,3,4-trimethylpentane is an alkane that is pentane substituted by a methyl group at positions 2,3 and 4. It is a constituent of gasoline. It has a role as a mammalian metabolite and a nephrotoxic agent. It is an alkane and a volatile organic compound."
+      },
+      {
+        "name": "2,2,3,3-tetramethylbutane",
+        "pubchemCID": "11675",
+        "molecular_formula": "C8H18",
+        "molecular_weight": "114.23",
+        "explanation": "2,2,3,3-tetramethylbutane is an alkane."
+      },
+      {
+        "name": "nonane",
+        "pubchemCID": "8141",
+        "molecular_formula": "C9H20 or H3C-(CH2)7-CH3",
+        "molecular_weight": "128.25",
+        "explanation": "N-nonane appears as a clear colorless liquid with a sharp odor. Flash point 86°F. Insoluble in water and less dense than water. Contact may irritate eyes and possibly injury the cornea. May irritate skin. Vapor inhalation may cause irritation. Prolonged inhalation may lead to breathing difficulty. Ingestion causes abdominal discomfort, nausea and diarrhea."
+      },
+      {
+        "name": "2-methyloctane",
+        "pubchemCID": "18591",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "2-Methyloctane is a natural product found in Hypericum undulatum, Hypericum perfoliatum, and other organisms with data available."
+      },
+      {
+        "name": "3-methyloctane",
+        "pubchemCID": "16664",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "3-methyloctane is an alkane."
+      },
+      {
+        "name": "4-methyloctane",
+        "pubchemCID": "16665",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "4-methyloctane is an alkane."
+      },
+      {
+        "name": "2,2-dimethylheptane",
+        "pubchemCID": "14062",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "2,2-dimethylheptane is an alkane."
+      },
+      {
+        "name": "2,3-dimethylheptane",
+        "pubchemCID": "26375",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "2,3-dimethylheptane is an alkane."
+      },
+      {
+        "name": "2,4-dimethylheptane",
+        "pubchemCID": "16656",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "2,4-dimethylheptane is an alkane that is heptane in which a hydrogen has been replaced by a methyl group at positions 2 and 4. It has a role as a fungal metabolite. It is an alkane and a volatile organic compound."
+      },
+      {
+        "name": "2,5-dimethylheptane",
+        "pubchemCID": "16662",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "2,5-dimethylheptane is an alkane."
+      },
+      {
+        "name": "2,6-dimethylheptane",
+        "pubchemCID": "14069",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "2,6-dimethylheptane is an alkane."
+      },
+      {
+        "name": "3,3-dimethylheptane",
+        "pubchemCID": "520991",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "3,3-dimethylheptane is an alkane."
+      },
+      {
+        "name": "3,4-dimethylheptane",
+        "pubchemCID": "13534",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "3,4-Dimethylheptane is a natural product found in Olea."
+      },
+      {
+        "name": "3,5-dimethylheptane",
+        "pubchemCID": "13558",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "3,5-dimethylheptane is an alkane."
+      },
+      {
+        "name": "4,4-dimethylheptane",
+        "pubchemCID": "136827",
+        "molecular_formula": "C9H20",
+        "molecular_weight": "128.25",
+        "explanation": "4,4-dimethylheptane is an alkane."
+      },
+      {
+        "name": "3-ethylheptane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "4-ethylheptane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2,3-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2,4-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2,5-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,3,3-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,3,4-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,3,5-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,4,4-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "3,3,4-trimethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2-methyl-3-ethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2-methyl-4-ethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "3-methyl-3-ethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "3-methyl-4-ethylhexane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2,3,3-tetramethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2,3,4-tetramethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2,4,4-tetramethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,3,3,4-tetramethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,2-dimethyl-3-ethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,3-dimethyl-3-ethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "2,4-dimethyl-3-ethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      },
+      {
+        "name": "3,3-diethylpentane",
+        "pubchemCID": "",
+        "molecular_formula": "",
+        "molecular_weight": "",
+        "explanation": ""
+      }
+    ]
+  }
+}
