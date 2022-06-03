@@ -26,7 +26,7 @@ public class AlkaneParser
                     var prename = Regex.Replace(name.Replace(mainChainName, ""), @"\s", "");
                     if (prename != "")
                     {
-                        string[] splitedPrename = prename.Split("-");
+                        string[] splitedPrename = prename.Split('-');
                         if(splitedPrename.Length%2 == 0)
                         {
                             for(int i = 0;i<splitedPrename.Length; i += 2)
@@ -44,7 +44,7 @@ public class AlkaneParser
                                         if (AppConstants.AlkaneBranchNaming.ContainsKey(branchName))
                                         {
                                             Debug.Log("Contains branch name: " + branchName);
-                                            string[] splitedBranchCounts = splitedPrename[i].Split(",");
+                                            string[] splitedBranchCounts = splitedPrename[i].Split(',');
                                             if(splitedBranchCounts.Length == branchCount)
                                             {
                                                 for(int j=0; j<branchCount; j++)
